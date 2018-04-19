@@ -3,7 +3,6 @@ package com.example.comp2100.retrogame2018s1;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -26,6 +25,8 @@ public abstract class GameObject extends View
         super(context, attrs);
         this.image = image;
         this.bounds = bounds;
+        this.xVel = 0;
+        this.yVel = 0;
     }
 
     protected abstract void OnDraw(Canvas canvas);
