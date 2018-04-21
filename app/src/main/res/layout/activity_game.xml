@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.comp2100.retrogame2018s1.GameActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <com.example.comp2100.retrogame2018s1.GameView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Game Activity"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="246dp" />
+        android:layout_height="wrap_content" />
+
+
+
 </android.support.constraint.ConstraintLayout>
