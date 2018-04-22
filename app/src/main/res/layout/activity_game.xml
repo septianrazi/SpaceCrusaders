@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.comp2100.retrogame2018s1.GameActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/pauseGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Game Activity"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="246dp" />
+        android:text=" Pause Game"
+        tools:layout_editor_absoluteX="253dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <RelativeLayout
+        android:layout_width="379dp"
+        android:layout_height="509dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="6dp">
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
