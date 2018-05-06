@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/instructions"
+            android:id="@+id/btn_instructions"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="22dp"
@@ -45,7 +45,7 @@
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
             android:text="Options"
-            app:layout_constraintBottom_toTopOf="@+id/instructions"
+            app:layout_constraintBottom_toTopOf="@+id/btn_instructions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
