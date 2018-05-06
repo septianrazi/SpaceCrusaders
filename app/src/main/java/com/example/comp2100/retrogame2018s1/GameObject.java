@@ -29,5 +29,6 @@ public abstract class GameObject extends View
         this.yVel = 0;
     }
 
+    public abstract void update();
     protected abstract void OnDraw(Canvas canvas);
 }

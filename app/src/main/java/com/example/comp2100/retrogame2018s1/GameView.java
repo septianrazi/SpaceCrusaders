@@ -10,36 +10,46 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 /**
  * Created by Septian Razi on 19-Apr-18.
- * View used for GameActivity
+ * Edited by Jasper McNiven to include the game loop and GameObject list
+ * View used for GameActivity, contains the main game loop and central game logic
  */
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
-    float xt = (float) 200.0;
-    float yt = (float) 200.0;
-    float speed = (float) 10.0;
+    private final int REFRESH_TIME = 10; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
+    float xt = 200.0f;
+    float yt = 200.0f;
+    float speed = 10.0f;
     float yMax;
     Paint p;
     Handler timer;
+    GameObjectList gameObjects;
+
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.setOnTouchListener(this);
-        timer = new Handler();
-        timer.postDelayed(this,10);
 
         this.p = new Paint();
         p.setColor(Color.RED);
         p.setStrokeWidth(3);
+
+        // Set up the game loop
+        timer = new Handler();
+        timer.postDelayed(this,10);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        // Draw all the GameObjects
+        gameObjects.Draw(canvas);
+
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
-
     }
 
     @Override
@@ -51,9 +61,12 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         return false;
     }
 
+    // The below code is called by the handler and is the basis of this programs game loop
     @Override
-    public void run() {
-        speed += GlobalGameVariables.gravity;
+    public void run() { // run/ gameloop are the same thing from our point of view
+
+        // Update all the GameObjects
+        gameObjects.Update();
 
         if (yt >= yMax-100.0f)
         {
@@ -64,15 +77,13 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
             p.setColor(Color.RED);
         }
 
-
         if (yt <= 50.0f)
         {
             yt = 50.0f;
             speed = 0;
             p.setColor(Color.BLUE);
         }
-
         this.invalidate();
-        timer.postDelayed(this,1);
+        timer.postDelayed(this,REFRESH_TIME);
     }
 }
