@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  */
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
-    private final int REFRESH_TIME = 10; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
+    private final int REFRESH_TIME = 1; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
     float xt = 200.0f;
     float yt = 200.0f;
     float speed = 10.0f;
@@ -46,7 +47,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // Draw all the GameObjects
-        gameObjects.Draw(canvas);
+        //gameObjects.Draw(canvas);
 
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
@@ -54,9 +55,10 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        speed =  -100.0f;
+        speed =  -GlobalGameVariables.jumpSpeed;
 
-        //this.invalidate();
+        this.invalidate();
+        System.out.println("yreet");
 
         return false;
     }
@@ -66,7 +68,9 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     public void run() { // run/ gameloop are the same thing from our point of view
 
         // Update all the GameObjects
-        gameObjects.Update();
+//        gameObjects.Update();
+
+        speed += GlobalGameVariables.gravity;
 
         if (yt >= yMax-100.0f)
         {

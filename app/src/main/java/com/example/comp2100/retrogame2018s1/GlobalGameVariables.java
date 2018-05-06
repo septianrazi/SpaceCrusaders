@@ -6,6 +6,7 @@ package com.example.comp2100.retrogame2018s1;
  */
 
 public class GlobalGameVariables {
-    public static float gravity = 2.0f; // The speed at which objects falls
+    public static float gravity = 3.0f; // The speed at which objects falls
+    public static float jumpSpeed = 35;
     public static float gameSpeed = 2.0f; // The speed at which the screen scrolls
 }

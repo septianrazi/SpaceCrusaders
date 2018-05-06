@@ -17,6 +17,11 @@ public class SpaceShip extends GameObject {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     protected void OnDraw(Canvas canvas) {
 
     }
