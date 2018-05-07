@@ -18,7 +18,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        final Button pauseButton = findViewById(R.id.pauseGame);
+        final Button pauseButton = findViewById(R.id.btn_pauseGame);
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
