@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text="Welcome to Space Invaders 2!"
+            android:gravity="center_horizontal"
             android:textSize="24sp"
             android:visibility="visible"
             tools:text="Welcome to Space Invaders 2!" />

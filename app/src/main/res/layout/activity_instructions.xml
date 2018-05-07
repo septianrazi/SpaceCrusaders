@@ -17,6 +17,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="\n \n \n \n How to start the game: \n Begin the game by tapping anywhere on the screen. \n \n How to play: \n You can only control the jumping of the spaceship. You can jump by tapping anywhere on the screen. Two consecutive taps  imply double the height. No tapping would result in a fall downwards due to gravity. \n \n Goal of the game: \n The aim of the game is to avoid all the obstructions by jumping strategially. If the player touches the obstacle, the game is over. This is an infinite game and hence, the real goal is to get as high a score as possible."
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/btn_return"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
