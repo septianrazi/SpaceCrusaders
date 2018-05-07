@@ -13,6 +13,9 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+
+
+
         <Button
             android:id="@+id/btn_exit"
             android:layout_width="210dp"
@@ -49,16 +52,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType = "centerCrop"
+            app:srcCompat="@drawable/main_back"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
         <TextView
             android:id="@+id/welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text="Welcome to Space Invaders 2!"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:gravity="center_horizontal"
             android:textSize="24sp"
             android:visibility="visible"
             tools:text="Welcome to Space Invaders 2!" />
+
 
         <Button
             android:id="@+id/btn_newGame"
@@ -71,6 +86,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
