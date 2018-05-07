@@ -27,7 +27,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     float yMax;
     Paint p;
     Handler timer;
-    GameObjectList gameObjects;
+    GameObjectList gameObjects = new GameObjectList();
 
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -47,7 +47,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // Draw all the GameObjects
-        //gameObjects.Draw(canvas);
+        gameObjects.Draw(canvas);
 
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
@@ -56,9 +56,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         speed =  -GlobalGameVariables.jumpSpeed;
-
         this.invalidate();
-        System.out.println("yreet");
 
         return false;
     }
@@ -68,7 +66,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     public void run() { // run/ gameloop are the same thing from our point of view
 
         // Update all the GameObjects
-//        gameObjects.Update();
+        gameObjects.Update();
 
         speed += GlobalGameVariables.gravity;
 

@@ -29,4 +29,14 @@ public class GameObjectList extends ArrayList<GameObject>{
         }
     }
 
+    public GameObjectList GetObstacles()
+    {
+        GameObjectList obstacles = new GameObjectList();
+        for (GameObject gObject : this){
+            if (gObject instanceof Obstacle)
+                obstacles.add(gObject);
+        }
+        return obstacles;
+    }
+
 }
