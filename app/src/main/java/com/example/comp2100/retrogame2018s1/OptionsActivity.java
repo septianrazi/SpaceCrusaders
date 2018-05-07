@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+/*
+    Created and edited by Kriti  Tripathi, 07/05/2018
+    Activity for the options of the game such as difficulty to be displayed */
+
 public class OptionsActivity extends AppCompatActivity {
 
     @Override
