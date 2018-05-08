@@ -2,6 +2,7 @@ package com.example.comp2100.retrogame2018s1;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 /*
     Created and edited by Kriti  Tripathi, 19/04/2018
+    eddited by Yatindra Tripathi, 08/05/2018
     Activity for the menu display
  */
 
@@ -24,6 +26,9 @@ public class MainMenuActivity extends AppCompatActivity {
         final Button button_instructions = findViewById(R.id.btn_instructions);
         final Button button_exit = findViewById(R.id.btn_exit);
         final TextView txtView = findViewById(R.id.txt_insturctions);
+
+        MediaPlayer ring= MediaPlayer.create(MainMenuActivity.this,R.raw.ring);
+        ring.start();
 
 
         button_game.setOnClickListener(new View.OnClickListener() {
