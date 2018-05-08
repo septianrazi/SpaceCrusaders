@@ -8,7 +8,7 @@
 
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/sb_speed"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="208dp"
         android:layout_height="50dp"
@@ -19,14 +19,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:max="10"
-        android:progress="3"
-        app:layout_constraintBottom_toTopOf="@+id/seekBar3"
+        android:progress="5"
+        app:layout_constraintBottom_toTopOf="@+id/sb_gravity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_difficulty" />
 
     <SeekBar
-        android:id="@+id/seekBar3"
+        android:id="@+id/sb_gravity"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="208dp"
         android:layout_height="50dp"
@@ -37,11 +37,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:max="10"
-        android:progress="3"
+        android:progress="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_speed" />
 
     <RadioGroup
         android:id="@+id/group_difficulty"
@@ -54,7 +54,7 @@
         android:layout_marginStart="24dp"
         android:checkedButton="@+id/btn_medium"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintBottom_toTopOf="@+id/sb_speed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_difficulty">
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/txt_speed"
+        android:id="@+id/txt_select_speed"
         android:layout_width="208dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
@@ -111,13 +111,13 @@
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:text="Select speed: "
-        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintBottom_toTopOf="@+id/sb_speed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_difficulty" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_selectGravity"
         android:layout_width="208dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
@@ -128,10 +128,10 @@
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:text="Select gravity: "
-        app:layout_constraintBottom_toTopOf="@+id/seekBar3"
+        app:layout_constraintBottom_toTopOf="@+id/sb_gravity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_speed" />
 
     <Button
         android:id="@+id/btn_returnFromOptions"
@@ -147,7 +147,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/sb_gravity" />
 
     <Switch
         android:id="@+id/switch_sound"
@@ -166,5 +166,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:checked="true" />
+
+    <TextView
+        android:id="@+id/txt_sound"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:text="Sound is On!"
+        app:layout_constraintBottom_toTopOf="@+id/txt_difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_sound"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_gravity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="119dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:text="Gravity: 5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sb_gravity" />
+
+    <TextView
+        android:id="@+id/txt_speed"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="228dp"
+        android:text="Speed: 5"
+        app:layout_constraintBottom_toTopOf="@+id/txt_gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sb_speed"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sound" />
 
 </android.support.constraint.ConstraintLayout>

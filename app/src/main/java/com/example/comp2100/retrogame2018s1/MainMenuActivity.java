@@ -1,12 +1,17 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 /*
@@ -15,8 +20,9 @@ import android.widget.TextView;
     Activity for the menu display
  */
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity{
     public static MediaPlayer ring;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,7 @@ public class MainMenuActivity extends AppCompatActivity {
         final Button button_instructions = findViewById(R.id.btn_instructions);
         final Button button_exit = findViewById(R.id.btn_exit);
         final TextView txtView = findViewById(R.id.txt_insturctions);
+        final Switch switch_sound = findViewById(R.id.switch_sound);
 
         ManageMusic.getInstance().initalizeMediaPlayer(this, R.raw.ring);
         ManageMusic.getInstance().start();
