@@ -14,6 +14,10 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.gravity;
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.scrollSpeed;
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
+
 /*
     Created and edited by Kriti  Tripathi, 19/04/2018
     eddited by Yatindra Tripathi, 08/05/2018
@@ -28,12 +32,12 @@ public class MainMenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+
+        // Adding buttons and menus
         final Button button_game = findViewById(R.id.btn_newGame);
         final Button button_options = findViewById(R.id.btn_options);
         final Button button_instructions = findViewById(R.id.btn_instructions);
         final Button button_exit = findViewById(R.id.btn_exit);
-        final TextView txtView = findViewById(R.id.txt_insturctions);
-        final Switch switch_sound = findViewById(R.id.switch_sound);
 
         ManageMusic.getInstance().initalizeMediaPlayer(this, R.raw.ring);
         ManageMusic.getInstance().start();

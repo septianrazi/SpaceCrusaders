@@ -12,6 +12,10 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.gravity;
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.scrollSpeed;
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
+
 
 /*
     Created and edited by Kriti  Tripathi, 07/05/2018
@@ -26,8 +30,10 @@ public class OptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstances);
         setContentView(R.layout.activity_options);
 
+        // Making buttons and menus
         final Button button_return_2 = findViewById(R.id.btn_returnFromOptions);
         switch_sound = findViewById(R.id.switch_sound);
+        switch_sound.setChecked(soundOn);
         final SeekBar seekBar_speed = findViewById(R.id.sb_speed);
         final SeekBar seekBar_gravity = findViewById(R.id.sb_gravity);
         final RadioButton button_easy = findViewById(R.id.btn_easy);
@@ -38,8 +44,13 @@ public class OptionsActivity extends AppCompatActivity {
         final TextView txt_gravity = findViewById(R.id.txt_gravity);
         final TextView txt_sound = findViewById(R.id.txt_sound);
 
+        seekBar_speed.setProgress((int)(scrollSpeed));
+        seekBar_gravity.setProgress((int)(gravity));
+
+        // setting local variables
         current_speed = seekBar_speed.getProgress();
         current_gravity = seekBar_gravity.getProgress();
+        setGlobalVariables();
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -64,11 +75,12 @@ public class OptionsActivity extends AppCompatActivity {
                     seekBar_speed.setProgress(8);
                     txt_speed.setText("Speed: 8");
                     seekBar_gravity.setProgress(9);
-                    txt_gravity.setText("Gravity: Earth!");
+                    txt_gravity.setText("Gravity: 9");
                     current_speed = 8;
                     current_gravity = 9;
                 }
             }
+
         });
 
 
@@ -77,6 +89,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 current_speed = progress;
                 txt_speed.setText("Speed: " + progress);
+                setGlobalVariables();
 
             }
 
@@ -89,6 +102,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+
         });
 
 
@@ -96,11 +110,8 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 current_gravity = progress;
-                if (progress < 9){
-                txt_gravity.setText("Gravity: " + progress);}
-                else if (progress == 9){txt_gravity.setText("Gravity: Earth");}
-                else {txt_gravity.setText("Gravity: Greater than Earth's!");}
-
+                txt_gravity.setText("Gravity: " + progress);
+                setGlobalVariables();
             }
 
             @Override
@@ -134,9 +145,16 @@ public class OptionsActivity extends AppCompatActivity {
                     ManageMusic.getInstance().start();
                     txt_sound.setText("Sound is on!");
                 }
+                soundOn = b;
+                System.out.println("Sound is " + soundOn) ;
             }
         });
 
+    }
+
+    public void setGlobalVariables(){
+            scrollSpeed = current_speed;
+            gravity = current_gravity;
     }
 
 
