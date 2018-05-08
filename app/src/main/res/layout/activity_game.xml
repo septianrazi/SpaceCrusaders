@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:scrolling_image_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.comp2100.retrogame2018s1.GameActivity">
+
+    <com.q42.android.scrollingimageview.ScrollingImageView
+        android:id="@+id/scrolling_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        scrolling_image_view:speed="1dp"
+        scrolling_image_view:src="@drawable/game_back" />
 
     <Button
         android:id="@+id/btn_pauseGame"

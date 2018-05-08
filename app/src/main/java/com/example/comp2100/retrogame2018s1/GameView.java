@@ -31,11 +31,6 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     Paint p;
     Handler timer;
     GameObjectList gameObjects = new GameObjectList();
-//    SoundPool soundPool;
-//    SoundPool.Builder soundpoolBuilder;
-//    AudioAttributes audioAttributes;
-//    AudioAttributes.Builder aabuilder;
-//    int soundID;
 
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -59,16 +54,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
-//        aabuilder = new AudioAttributes.Builder();
-//        aabuilder.setUsage(AudioAttributes.USAGE_GAME);
-//        aabuilder.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION);
-//        audioAttributes = aabuilder.build();
-//
-//        soundpoolBuilder = new SoundPool.Builder();
-//        soundpoolBuilder.setAudioAttributes(audioAttributes);
-//        soundPool = soundpoolBuilder.build();
-//
-//        soundID = soundPool.load(GameActivity., R.raw.jump, 1);
+
     }
 
     @Override
