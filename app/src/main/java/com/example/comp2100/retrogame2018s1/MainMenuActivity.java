@@ -1,22 +1,11 @@
 package com.example.comp2100.retrogame2018s1;
 
-import android.app.Application;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Path;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.TextView;
-
-import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.gravity;
-import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.scrollSpeed;
-import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
 
 /*
     Created and edited by Kriti  Tripathi, 19/04/2018
@@ -39,10 +28,11 @@ public class MainMenuActivity extends AppCompatActivity{
         final Button button_instructions = findViewById(R.id.btn_instructions);
         final Button button_exit = findViewById(R.id.btn_exit);
 
-        ManageMusic.getInstance().initalizeMediaPlayer(this, R.raw.ring);
-        ManageMusic.getInstance().start();
+        // Initialise background music
+        MusicManager.getInstance().initalizeMediaPlayer(this, R.raw.ring);
+        MusicManager.getInstance().start();
 
-
+        // Implement the buttons
         button_game.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainMenuActivity.this, GameActivity.class));

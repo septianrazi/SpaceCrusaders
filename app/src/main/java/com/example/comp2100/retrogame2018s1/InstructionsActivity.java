@@ -17,9 +17,10 @@ public class InstructionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
 
+        // Define the return button
         final Button  button_return = findViewById(R.id.btn_return);
 
-
+        // Implement it
         button_return.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                System.exit(0);

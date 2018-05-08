@@ -52,6 +52,7 @@ public class OptionsActivity extends AppCompatActivity {
         current_gravity = seekBar_gravity.getProgress();
         setGlobalVariables();
 
+        // Detects a change in the radioGroup and accordingly sets the value of the two seekbars
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int selectedID) {
@@ -83,7 +84,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         });
 
-
+        // Detects a change in the speed seekbar and saves it
         seekBar_speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -105,7 +106,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         });
 
-
+        // Detects a change in the gravity seekbar and saves it
         seekBar_gravity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -125,8 +126,7 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-
-
+        // Make sures that the return button on the screen works
         button_return_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,24 +134,26 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
+        // Whenever it detects a change in the sound switch, it either starts or stops the music depending on whether the switch is on or ff
         switch_sound.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!b) {ManageMusic.getInstance().stop();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isOn) {
+                if (!isOn) {
+                    MusicManager.getInstance().stop();
                 txt_sound.setText("Sound is off!");
                 }
-                if (b) {
-                    ManageMusic.getInstance().initalizeMediaPlayer(OptionsActivity.this, R.raw.ring);
-                    ManageMusic.getInstance().start();
+                if (isOn) {
+                    MusicManager.getInstance().initalizeMediaPlayer(OptionsActivity.this, R.raw.ring);
+                    MusicManager.getInstance().start();
                     txt_sound.setText("Sound is on!");
                 }
-                soundOn = b;
-                System.out.println("Sound is " + soundOn) ;
+                soundOn = isOn;
             }
         });
 
     }
 
+    //Setting the global variables to the changed seekbar values
     public void setGlobalVariables(){
             scrollSpeed = current_speed;
             gravity = current_gravity;
