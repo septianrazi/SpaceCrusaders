@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -28,6 +31,11 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     Paint p;
     Handler timer;
     GameObjectList gameObjects = new GameObjectList();
+//    SoundPool soundPool;
+//    SoundPool.Builder soundpoolBuilder;
+//    AudioAttributes audioAttributes;
+//    AudioAttributes.Builder aabuilder;
+//    int soundID;
 
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -51,12 +59,23 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
+//        aabuilder = new AudioAttributes.Builder();
+//        aabuilder.setUsage(AudioAttributes.USAGE_GAME);
+//        aabuilder.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION);
+//        audioAttributes = aabuilder.build();
+//
+//        soundpoolBuilder = new SoundPool.Builder();
+//        soundpoolBuilder.setAudioAttributes(audioAttributes);
+//        soundPool = soundpoolBuilder.build();
+//
+//        soundID = soundPool.load(GameActivity., R.raw.jump, 1);
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         speed =  -GlobalGameVariables.jumpSpeed;
         this.invalidate();
+        GameActivity.soundPool.play(GameActivity.soundID, 1, 1, 0, 0, 1);
 
         return false;
     }
