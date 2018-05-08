@@ -2,9 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/instructions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:scrolling_image_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.comp2100.retrogame2018s1.MainMenuActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -13,7 +15,14 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-
+        <com.q42.android.scrollingimageview.ScrollingImageView
+            android:id="@+id/scrolling_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            scrolling_image_view:speed="1dp"
+            scrolling_image_view:src="@drawable/game_back" />
         <Button
             android:id="@+id/btn_exit"
             android:layout_width="210dp"
@@ -50,14 +59,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="426dp"
-            android:layout_height="573dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/main_back"
-            tools:layout_editor_absoluteX="-19dp"
-            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/welcome"

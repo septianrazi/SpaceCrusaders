@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -51,12 +54,14 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         yMax = canvas.getHeight();
         canvas.drawCircle(xt,yt,50, p);
+
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         speed =  -GlobalGameVariables.jumpSpeed;
         this.invalidate();
+        GameActivity.soundPool.play(GameActivity.soundID, 1, 1, 0, 0, 1);
 
         return false;
     }
