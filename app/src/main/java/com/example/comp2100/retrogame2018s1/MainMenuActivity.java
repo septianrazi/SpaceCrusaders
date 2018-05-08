@@ -16,6 +16,7 @@ import android.widget.TextView;
  */
 
 public class MainMenuActivity extends AppCompatActivity {
+    public static MediaPlayer ring;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +28,8 @@ public class MainMenuActivity extends AppCompatActivity {
         final Button button_exit = findViewById(R.id.btn_exit);
         final TextView txtView = findViewById(R.id.txt_insturctions);
 
-        MediaPlayer ring= MediaPlayer.create(MainMenuActivity.this,R.raw.ring);
-        ring.start();
+        ManageMusic.getInstance().initalizeMediaPlayer(this, R.raw.ring);
+        ManageMusic.getInstance().start();
 
 
         button_game.setOnClickListener(new View.OnClickListener() {
