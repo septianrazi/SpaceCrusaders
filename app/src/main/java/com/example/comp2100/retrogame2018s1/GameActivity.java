@@ -41,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(GameActivity.this, MainMenuActivity.class));
+                System.exit(0);
             }
         });
     }
