@@ -143,9 +143,7 @@ public class OptionsActivity extends AppCompatActivity {
         // Make sures that the return button on the screen works
         button_return_2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                System.exit(0);
-            }
+            public void onClick(View view) {finish();}
         });
 
         // Whenever it detects a change in the sound switch, it either starts or stops the music depending on whether the switch is on or ff
@@ -161,6 +159,7 @@ public class OptionsActivity extends AppCompatActivity {
                     txt_music.setText("Sound is on!");
                 }
                 soundOn = isOn;
+                System.out.println(isOn);
             }
         });
 
@@ -170,6 +169,7 @@ public class OptionsActivity extends AppCompatActivity {
                 if (!isOn){txt_effects.setText("Effects are off!"); }
                 else {txt_effects.setText("Effects are on!");}
                 effectsOn = isOn;
+                System.out.println(isOn);
             }
         });
 
