@@ -1,5 +1,6 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +17,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
+
 /**
  * Created by Septian Razi on 19-Apr-18.
  * Edited by Jasper McNiven to include the game loop and GameObject list
@@ -23,6 +26,9 @@ import java.util.ArrayList;
  */
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
+    GameActivity gm = new GameActivity();
+    private Context context = gm.getContext();
+
     private final int REFRESH_TIME = 1; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
     float xt = 200.0f;
     float yt = 200.0f;
@@ -61,7 +67,9 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     public boolean onTouch(View view, MotionEvent motionEvent) {
         speed =  -GlobalGameVariables.jumpSpeed;
         this.invalidate();
-        GameActivity.soundPool.play(GameActivity.soundID, 1, 1, 0, 0, 1);
+        System.out.println(effectsOn);
+        if (effectsOn) {SoundEffectsManager.getInstance().initalizeSoundPool(context, R.raw.jump);
+        SoundEffectsManager.getInstance().play();}
 
         return false;
     }

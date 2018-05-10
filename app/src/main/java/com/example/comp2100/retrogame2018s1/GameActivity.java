@@ -1,5 +1,6 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -17,12 +18,19 @@ import android.widget.Button;
  */
 
 public class GameActivity extends AppCompatActivity {
+    private  static Context mContext;
 
-    static SoundPool soundPool;
-    SoundPool.Builder soundpoolBuilder;
-    AudioAttributes audioAttributes;
-    AudioAttributes.Builder aabuilder;
-    static int soundID;
+    public static Context getContext() {
+        return mContext;
+    }
+
+    public static void setContext(Context mContext1) {
+        mContext = mContext1;
+    }
+
+    public GameActivity(){
+        setContext(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +61,6 @@ public class GameActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
-        aabuilder = new AudioAttributes.Builder();
-        aabuilder.setUsage(AudioAttributes.USAGE_GAME);
-        aabuilder.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION);
-        audioAttributes = aabuilder.build();
-
-        soundpoolBuilder = new SoundPool.Builder();
-        soundpoolBuilder.setAudioAttributes(audioAttributes);
-        soundPool = soundpoolBuilder.build();
-
-        soundID = soundPool.load(GameActivity.this, R.raw.jump, 1);
-        soundID = soundPool.load(GameActivity.this, R.raw.jump, 1);
 
     }
 

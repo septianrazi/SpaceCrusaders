@@ -11,11 +11,9 @@ public abstract class Manager {
 
 
     // Make constructor which creates background music
-    public void initalizeMediaPlayer(Context context, int musicId){
-    }
+    public void initalizeMediaPlayer(Context context, int musicId){ }
 
     // Play the music
-
     public abstract void start();
 
 
