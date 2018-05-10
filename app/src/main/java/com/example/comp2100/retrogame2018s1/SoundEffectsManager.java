@@ -21,7 +21,7 @@ public class SoundEffectsManager extends Manager {
     }
 
     // Make constructor which creates background music
-    public void initalizeSoundPool(Context context, int soundID){
+    public void initalizeMediaPlayer(Context context, int soundID){
         soundEffects = MediaPlayer.create(context, soundID);
         soundEffects.setLooping(false);
 

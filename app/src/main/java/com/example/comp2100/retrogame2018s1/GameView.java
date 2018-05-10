@@ -70,7 +70,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         this.invalidate();
         System.out.println(effectsOn);
         System.out.println(context);
-        if (effectsOn) {SoundEffectsManager.getInstance().initalizeSoundPool(context, R.raw.jump);
+        if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
         SoundEffectsManager.getInstance().start();}
 
         return false;
