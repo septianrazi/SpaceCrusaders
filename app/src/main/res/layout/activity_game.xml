@@ -10,9 +10,15 @@
     <com.q42.android.scrollingimageview.ScrollingImageView
         android:id="@+id/scrolling_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         scrolling_image_view:speed="1dp"
         scrolling_image_view:src="@drawable/game_back" />
+
+    <com.example.comp2100.retrogame2018s1.GameView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/btn_pauseGame"
@@ -26,12 +32,6 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_help"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="16dp" />
-
-    <com.example.comp2100.retrogame2018s1.GameView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/btn_quit"
