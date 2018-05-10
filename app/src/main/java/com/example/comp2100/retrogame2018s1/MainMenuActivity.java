@@ -55,6 +55,7 @@ public class MainMenuActivity extends AppCompatActivity{
         button_exit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.exit(0);
+
             }
         });
 
