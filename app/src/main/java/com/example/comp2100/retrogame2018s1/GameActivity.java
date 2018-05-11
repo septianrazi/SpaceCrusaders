@@ -59,7 +59,6 @@ public class GameActivity extends AppCompatActivity {
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(GameActivity.this, MainMenuActivity.class));
                 System.exit(0);
             }
         });

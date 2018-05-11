@@ -58,8 +58,8 @@ public class MainMenuActivity extends AppCompatActivity{
                  Intent intent = new Intent(MainMenuActivity.this, OptionsActivity.class);
                  intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                 switch_music.setChecked(soundOn);
-                 switch_effects.setChecked(effectsOn);
+//                 switch_music.setChecked(soundOn);
+//                 switch_effects.setChecked(effectsOn);
                  startActivity(intent);
              }
          });
