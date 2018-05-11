@@ -26,8 +26,7 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn
  */
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
-    GameActivity gm = new GameActivity();
-    private Context context = gm.getContext();
+    public Context context;
 
     private final int REFRESH_TIME = 1; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
     float xt = 200.0f;
@@ -42,6 +41,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.setOnTouchListener(this);
+        this.context = context;
 
         this.p = new Paint();
         p.setColor(Color.RED);
