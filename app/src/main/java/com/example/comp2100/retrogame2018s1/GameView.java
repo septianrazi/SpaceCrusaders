@@ -65,11 +65,13 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+
         speed =  -GlobalGameVariables.jumpSpeed;
         this.invalidate();
         System.out.println(effectsOn);
-        if (effectsOn) {SoundEffectsManager.getInstance().initalizeSoundPool(context, R.raw.jump);
-        SoundEffectsManager.getInstance().play();}
+        System.out.println(context);
+        if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
+        SoundEffectsManager.getInstance().start();}
 
         return false;
     }

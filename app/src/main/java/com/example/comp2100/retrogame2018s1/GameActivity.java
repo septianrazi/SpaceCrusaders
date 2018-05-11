@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.concurrent.Semaphore;
+
 /*
     Created by Septian Razi, 19/04/2018
     Edited by Kriti Tripathi, 07/05/2018

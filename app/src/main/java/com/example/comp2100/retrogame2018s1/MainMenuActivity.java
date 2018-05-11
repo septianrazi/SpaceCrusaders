@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
+
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
 
 /*
     Created and edited by Kriti  Tripathi, 19/04/2018
@@ -27,6 +31,8 @@ public class MainMenuActivity extends AppCompatActivity{
         final Button button_options = findViewById(R.id.btn_options);
         final Button button_instructions = findViewById(R.id.btn_instructions);
         final Button button_exit = findViewById(R.id.btn_exit);
+        final Switch switch_music = findViewById(R.id.switch_effects);
+        final Switch switch_effects = findViewById(R.id.switch_effects);
 
         // Initialise background music
         MusicManager.getInstance().initalizeMediaPlayer(this, R.raw.ring);
@@ -41,14 +47,20 @@ public class MainMenuActivity extends AppCompatActivity{
 
          button_instructions.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
-                 startActivity(new Intent(MainMenuActivity.this, InstructionsActivity.class));
+                 Intent intent = new Intent(MainMenuActivity.this, InstructionsActivity.class);
+                 startActivity(intent);
              }
          });
 
          button_options.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 startActivity(new Intent(MainMenuActivity.this, OptionsActivity.class));
+                 Intent intent = new Intent(MainMenuActivity.this, OptionsActivity.class);
+                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                 switch_music.setChecked(soundOn);
+                 switch_effects.setChecked(effectsOn);
+                 startActivity(intent);
              }
          });
 
