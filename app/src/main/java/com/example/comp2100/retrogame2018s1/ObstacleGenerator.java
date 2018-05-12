@@ -8,6 +8,7 @@ public class ObstacleGenerator {
 
     private static final int OBSTACLE_SPACING = GlobalGameVariables.windowWidth;
     private static final int OBSTACLE_WIDTH = GlobalGameVariables.windowWidth / 4;
+    private static final int OBSTACLE_HEIGHT = GlobalGameVariables.windowHeight / 5;
     private static Context context;
     private static AttributeSet attrs;
 
@@ -22,9 +23,13 @@ public class ObstacleGenerator {
         for (int i = 0; i < obstacleCount; i++)
         {
             Bounds[] bounds = new Bounds[3];
-            bounds[0] = new Bounds(xPos, GlobalGameVariables.windowHeight/2, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight/5);
-            bounds[1] = new Bounds(xPos, 0, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
-            bounds[2] = new Bounds(xPos, (GlobalGameVariables.windowHeight/5)*3, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
+            float bound0y = GlobalGameVariables.windowHeight/2;
+            bounds[0] = new Bounds(xPos, bound0y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+            float bound1height = GlobalGameVariables.windowHeight - bound0y - OBSTACLE_HEIGHT/2;
+            bounds[1] = new Bounds(xPos, bound1height/2, OBSTACLE_WIDTH, bound1height);
+            float bound2top = (bound0y + OBSTACLE_HEIGHT/2);
+            float bound2height = GlobalGameVariables.windowHeight - bound2top;
+            bounds[2] = new Bounds(xPos, bound2top + bound2height/2, OBSTACLE_WIDTH, bound2height);
             Obstacle tmpOb = new Obstacle(context, attrs, null, null, bounds);
             GameView.gameObjects.add(tmpOb);
             xPos += OBSTACLE_SPACING;
