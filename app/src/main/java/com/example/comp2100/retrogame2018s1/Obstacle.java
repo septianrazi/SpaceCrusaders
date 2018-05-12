@@ -40,7 +40,6 @@ public class Obstacle extends GameObject {
     public void update() {
         for(int i = 0; i < allBounds.length; i++)
             allBounds[i].SetX(allBounds[i].GetX() - GlobalGameVariables.scrollSpeed);
-        bounds.SetX(bounds.GetX() - GlobalGameVariables.scrollSpeed);
     }
 
     @Override
