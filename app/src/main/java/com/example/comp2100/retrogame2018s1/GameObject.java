@@ -29,6 +29,13 @@ public abstract class GameObject extends View
         this.yVel = 0;
     }
 
+    public GameObject(Context context, Bounds bounds, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        this.bounds = bounds;
+        this.xVel = 0;
+        this.yVel = 0;
+    }
+
     public abstract void update();
     protected abstract void OnDraw(Canvas canvas);
 }
