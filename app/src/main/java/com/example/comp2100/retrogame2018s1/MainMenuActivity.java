@@ -1,6 +1,7 @@
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class MainMenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // Getting the width and height of the screen
+        GlobalGameVariables.windowWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        GlobalGameVariables.windowHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         // Adding buttons and menus
         final Button button_game = findViewById(R.id.btn_newGame);
