@@ -52,9 +52,11 @@ public class SpaceShip extends GameObject {
             p.setColor(Color.BLUE);
         };
 
-        if (collision(GameView.gameObjects.get(0))){
-            p.setColor(Color.YELLOW);
-        };
+        for (GameObject o : GameView.gameObjects){
+            if (collision(o)){
+                p.setColor(Color.CYAN);
+            }
+        }
     }
 
     @Override
