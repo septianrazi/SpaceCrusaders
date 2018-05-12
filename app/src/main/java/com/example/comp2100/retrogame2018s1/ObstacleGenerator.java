@@ -6,14 +6,26 @@ import android.util.AttributeSet;
 
 public class ObstacleGenerator {
 
-    Context context;
-    AttributeSet attrs;
+    private static final int OBSTACLE_SPACING = 200;
+    private static final int OBSTACLE_WIDTH = 60;
+    private static Context context;
+    private static AttributeSet attrs;
 
     // Set up initial obstacles
-    public ObstacleGenerator(Context context, @Nullable AttributeSet attrs)
+
+    public static void NewGame(Context GameView_context, @Nullable AttributeSet GameView_attrs)
     {
-        this.context = context;
-        this.attrs = attrs;
+        context = GameView_context;
+        attrs = GameView_attrs;
+        int obstacleCount = 3;
+        int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING;
+        int yPos = 0;
+        for (int i = 0; i < obstacleCount; i++)
+        {
+            Obstacle tmpOb = new Obstacle(context, null, new Bounds(xPos, yPos, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight), attrs);
+            GameView.gameObjects.add(tmpOb);
+            xPos += OBSTACLE_SPACING;
+        }
     }
 
     public Obstacle CreateObstacle()

@@ -58,8 +58,8 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         timer.postDelayed(this,10);
 
         spaceship = new SpaceShip(context, null, new Bounds(200.0f, 200.0f, 50,50), attrs);
-        obstacle = new Obstacle(context,null,  new Bounds (1000.0f, 600.0f, 200, 300), attrs);
-        gameObjects.add(obstacle);
+        //obstacle = new Obstacle(context,null,  new Bounds (1000.0f, 600.0f, 200, 300), attrs);
+        ObstacleGenerator.NewGame(context, attrs);
     }
 
     @Override
