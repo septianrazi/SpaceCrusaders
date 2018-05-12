@@ -19,13 +19,12 @@ public class ObstacleGenerator {
         attrs = GameView_attrs;
         int obstacleCount = 3;
         int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING;
-        int yPos = 0;
         for (int i = 0; i < obstacleCount; i++)
         {
             Bounds[] bounds = new Bounds[3];
             bounds[0] = new Bounds(xPos, GlobalGameVariables.windowHeight/2, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight/5);
-            bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
-            bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
+            bounds[1] = new Bounds(xPos, 0, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
+            bounds[2] = new Bounds(xPos, (GlobalGameVariables.windowHeight/5)*3, OBSTACLE_WIDTH, (GlobalGameVariables.windowHeight/5)*2);
             Obstacle tmpOb = new Obstacle(context, attrs, null, null, bounds);
             GameView.gameObjects.add(tmpOb);
             xPos += OBSTACLE_SPACING;

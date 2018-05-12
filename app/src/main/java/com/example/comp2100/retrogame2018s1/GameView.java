@@ -89,14 +89,6 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         return false;
     }
 
-    //Function to set the windowWidth and windowHeight global variables
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        GlobalGameVariables.windowWidth = w;
-        GlobalGameVariables.windowHeight = h;
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
-
     // The below code is called by the handler and is the basis of this programs game loop
     @Override
     public void run() { // run/ gameloop are the same thing from our point of view

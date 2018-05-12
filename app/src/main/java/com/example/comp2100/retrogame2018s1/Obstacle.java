@@ -25,13 +25,12 @@ public class Obstacle extends GameObject {
      * @param attrs
      * @param image1 The image for the top part of the obstacle
      * @param image2 The image for the bottom part of the obstacle
-     * @param bounds An array with the bounds of the empty space at index 0, then index 1 = top part
+     * @param allBounds An array with the bounds of the empty space/ gap at index 0, then index 1 = top part
      *               index 2 = bottom part
      */
-    public Obstacle(Context context, @Nullable AttributeSet attrs, Bitmap image1, Bitmap image2, Bounds[] bounds) {
-        super(context, attrs, bounds[0]);
-
-        this.allBounds = bounds;
+    public Obstacle(Context context, @Nullable AttributeSet attrs, Bitmap image1, Bitmap image2, Bounds[] allBounds) {
+        super(context, attrs, allBounds[0]);
+        this.allBounds = allBounds;
         this.p = new Paint();
         p.setColor(Color.MAGENTA);
         p.setStrokeWidth(3);
