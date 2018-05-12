@@ -19,17 +19,8 @@ public abstract class GameObject extends View
     Bounds bounds;
     float xVel, yVel;
 
-    Bitmap image;
 
-    public GameObject(Context context, Bitmap image, Bounds bounds, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        this.image = image;
-        this.bounds = bounds;
-        this.xVel = 0;
-        this.yVel = 0;
-    }
-
-    public GameObject(Context context, Bounds bounds, @Nullable AttributeSet attrs) {
+    public GameObject(Context context, @Nullable AttributeSet attrs, Bounds bounds) {
         super(context, attrs);
         this.bounds = bounds;
         this.xVel = 0;
