@@ -18,7 +18,7 @@ public class ObstacleGenerator {
         context = GameView_context;
         attrs = GameView_attrs;
         int obstacleCount = 3;
-        int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING;
+        int xPos = GlobalGameVariables.windowWidth; //+ OBSTACLE_SPACING;
         int yPos = 0;
         for (int i = 0; i < obstacleCount; i++)
         {

@@ -74,8 +74,6 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         yMax = canvas.getHeight();
         spaceship.OnDraw(canvas);
-
-
     }
 
     @Override

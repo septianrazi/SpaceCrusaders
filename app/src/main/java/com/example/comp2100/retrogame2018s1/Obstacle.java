@@ -29,6 +29,7 @@ public class Obstacle extends GameObject {
     @Override
     public void update() {
         bounds.SetX(bounds.GetX() - 5);
+        System.out.println("yeet");
     }
 
     @Override

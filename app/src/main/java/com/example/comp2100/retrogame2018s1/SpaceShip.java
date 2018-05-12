@@ -64,6 +64,11 @@ public class SpaceShip extends GameObject {
 
     }
 
+    /**
+     * Function to determine if spaceship character has collided with a given object
+     * @param o The object we are detecting collision with
+     * @return True if collision has been detected
+     */
     public boolean collision (GameObject o){
         float distanceX = Math.abs(this.bounds.GetX() - o.bounds.GetX());
         float distanceY = Math.abs(this.bounds.GetY() - o.bounds.GetY());
