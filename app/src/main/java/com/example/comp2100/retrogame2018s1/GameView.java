@@ -37,7 +37,11 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     Handler timer;
     GameObjectList gameObjects = new GameObjectList();
 
-
+    /**
+     *
+     * @param context
+     * @param attrs
+     */
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.setOnTouchListener(this);
