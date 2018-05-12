@@ -23,7 +23,7 @@ public class SpaceShip extends GameObject {
     float radius;
     Paint p;
     public SpaceShip(Context context, Bitmap image, Bounds bounds, @Nullable AttributeSet attrs) {
-        super(context, image, bounds, attrs);
+        super(context, attrs, bounds);
 
         this.radius = bounds.getWidth()/2;
 
