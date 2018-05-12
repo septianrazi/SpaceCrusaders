@@ -43,7 +43,11 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     static GameObjectList gameObjects = new GameObjectList();
     Obstacle obstacle;
 
-
+    /**
+     *
+     * @param context
+     * @param attrs
+     */
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.setOnTouchListener(this);
