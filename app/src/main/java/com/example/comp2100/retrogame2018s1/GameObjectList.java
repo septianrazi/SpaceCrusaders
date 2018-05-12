@@ -25,7 +25,7 @@ public class GameObjectList extends ArrayList<GameObject>{
     public void Draw(Canvas canvas)
     {
         for (GameObject gObject : this) {
-            gObject.draw(canvas);
+            gObject.OnDraw(canvas);
         }
     }
 

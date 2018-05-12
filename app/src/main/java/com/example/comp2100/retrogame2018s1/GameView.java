@@ -28,14 +28,20 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn
 public class GameView extends View implements View.OnTouchListener, Runnable {
     public Context context;
 
-    private final int REFRESH_TIME = 1; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
-    float xt = 200.0f;
-    float yt = 200.0f;
-    float speed = 10.0f;
+    private final int REFRESH_TIME = 40; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
     float yMax;
+
+    float rectx = 1000;
+    float recty = 670;
+    int w;
+    int h;
+
+    SpaceShip spaceship;
+
     Paint p;
     Handler timer;
-    GameObjectList gameObjects = new GameObjectList();
+    static GameObjectList gameObjects = new GameObjectList();
+    Obstacle obstacle;
 
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -50,6 +56,10 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Set up the game loop
         timer = new Handler();
         timer.postDelayed(this,10);
+
+        spaceship = new SpaceShip(context, null, new Bounds(200.0f, 200.0f, 50,50), attrs);
+        obstacle = new Obstacle(context,null,  new Bounds (1000.0f, 600.0f, 200, 300), attrs);
+        gameObjects.add(obstacle);
     }
 
     @Override
@@ -59,14 +69,15 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         gameObjects.Draw(canvas);
 
         yMax = canvas.getHeight();
-        canvas.drawCircle(xt,yt,50, p);
+        spaceship.OnDraw(canvas);
+
 
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        speed =  -GlobalGameVariables.jumpSpeed;
+        spaceship.speed =  -GlobalGameVariables.jumpSpeed;
         this.invalidate();
         System.out.println(effectsOn);
         System.out.println(context);
@@ -76,30 +87,40 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         return false;
     }
 
+    //Function to set the windowWidth and windowHeight global variables
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        GlobalGameVariables.windowWidth = w;
+        GlobalGameVariables.windowHeight = h;
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
     // The below code is called by the handler and is the basis of this programs game loop
     @Override
     public void run() { // run/ gameloop are the same thing from our point of view
 
         // Update all the GameObjects
         gameObjects.Update();
+        spaceship.update();
 
-        speed += GlobalGameVariables.gravity;
-
-        if (yt >= yMax-100.0f)
-        {
-            speed = 0;
-            p.setColor(Color.BLACK);
-        } else {
-            yt+= speed;
-            p.setColor(Color.RED);
-        }
-
-        if (yt <= 50.0f)
-        {
-            yt = 50.0f;
-            speed = 0;
-            p.setColor(Color.BLUE);
-        }
+//        speed += GlobalGameVariables.gravity;
+//
+//        if (yt >= yMax-100.0f)
+//        {
+//            speed = 0;
+//            spaceship.p.setColor(Color.BLACK);
+//        } else {
+//            yt+= speed;
+//            spaceship.p.setColor(Color.RED);
+//        }
+//
+//        if (yt <= 50.0f)
+//        {
+//            yt = 50.0f;
+//            speed = 0;
+//            spaceship.p.setColor(Color.BLUE);
+//        }
+//        spaceship.bounds.SetPosition(xt, yt);
         this.invalidate();
         timer.postDelayed(this,REFRESH_TIME);
     }

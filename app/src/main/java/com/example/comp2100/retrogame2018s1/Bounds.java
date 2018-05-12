@@ -7,8 +7,8 @@ package com.example.comp2100.retrogame2018s1;
 
 public class Bounds {
 
-    float x, y;
-    float width, height;
+    float x, y; // CENTRE Coordinates of Object
+    float width, height; // Width and Height of Object
 
     public Bounds(float x, float y, float width, float height)
     {
@@ -34,9 +34,10 @@ public class Bounds {
 
     public float GetX(){ return x; }
     public float GetY(){ return y; }
-    public float GetWidth(){ return width; }
+    public float getWidth(){ return width; }
     public float getHeight(){ return height; }
 
+    public void SetPosition(float x, float y){ SetX(x); SetY(y);}
     public void SetX(float x){ this.x = x; }
     public void SetY(float y){ this.y = y; }
     public void SetWidth(float width){ this.width = width; }
