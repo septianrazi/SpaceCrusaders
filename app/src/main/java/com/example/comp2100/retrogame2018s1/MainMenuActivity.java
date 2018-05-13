@@ -32,6 +32,7 @@ public class MainMenuActivity extends AppCompatActivity{
         GlobalGameVariables.windowWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         GlobalGameVariables.windowHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+
         // Adding buttons and menus
         final Button button_game = findViewById(R.id.btn_newGame);
         final Button button_options = findViewById(R.id.btn_options);
