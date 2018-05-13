@@ -29,6 +29,8 @@ public class GameObjectList extends ArrayList<GameObject>{
         }
     }
 
+    // Created by Jasper McNiven
+    // Returns all the obstacles in the GameObject list
     public GameObjectList GetObstacles()
     {
         GameObjectList obstacles = new GameObjectList();

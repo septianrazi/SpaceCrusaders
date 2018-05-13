@@ -28,7 +28,7 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn
 public class GameView extends View implements View.OnTouchListener, Runnable {
     public Context context;
 
-    private final int REFRESH_TIME = 40; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
+    private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
     float yMax;
 
     float rectx = 1000;
@@ -61,8 +61,9 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         timer = new Handler();
         timer.postDelayed(this,10);
 
-        spaceship = new SpaceShip(context, null, new Bounds(200.0f, 200.0f, 50,50), attrs);
-        //obstacle = new Obstacle(context,null,  new Bounds (1000.0f, 600.0f, 200, 300), attrs);
+        float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
+        float spaceshipY = 2 * GlobalGameVariables.windowHeight / 5;
+        spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
         ObstacleGenerator.NewGame(context, attrs);
     }
 
