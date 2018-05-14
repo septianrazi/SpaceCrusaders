@@ -9,7 +9,7 @@ import java.util.Random;
 public class ObstacleGenerator {
 
     private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
-    private static final int OBSTACLE_WIDTH = 2 * GlobalGameVariables.windowWidth / 5;
+    private static final int OBSTACLE_WIDTH = GlobalGameVariables.windowWidth / 3;
     private static Context context;
     private static AttributeSet attrs;
 
@@ -27,7 +27,7 @@ public class ObstacleGenerator {
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
         Random rand = new Random();
         int obstacleCount = 3;
-        int xPos = GlobalGameVariables.windowWidth; //+ OBSTACLE_SPACING;
+        int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING * 2;
         for (int i = 0; i < obstacleCount; i++)
         {
             Bounds[] bounds = new Bounds[3];

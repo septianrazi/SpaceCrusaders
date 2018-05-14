@@ -15,9 +15,7 @@ import android.util.AttributeSet;
 
 public class SpaceShip extends GameObject {
 
-    float xt = 200.0f;
-    float yt = 200.0f;
-    float speed = 10.0f;
+    float speed = 0.0f;
     float yMax;
 
     float radius;
@@ -76,16 +74,43 @@ public class SpaceShip extends GameObject {
         float distanceX = Math.abs(this.bounds.GetX() - o.bounds.GetX());
         float distanceY = Math.abs(this.bounds.GetY() - o.bounds.GetY());
 
-        if (distanceX > (o.bounds.getWidth()/2 + radius)) { return false; }
-        if (distanceY > (o.bounds.getHeight()/2 + radius)){ return false;}
+        if (distanceX <= (o.bounds.width/2) + radius)
+        {
+            if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+//        if (distanceX > (o.bounds.getWidth()/2 + radius)) { return false; }
+//        if (distanceY > (o.bounds.getHeight()/2 + radius)){ return false;}
+//
+//        if (distanceX <= (o.bounds.width/2)) { return true; }
+//        if (distanceY <= (o.bounds.height/2)) { return true; }
+//
+//        float distanceToCorner = ((distanceX - o.bounds.getWidth()/2)*(distanceX - o.bounds.getWidth()/2))+
+//                ((distanceY - o.bounds.getHeight()/2)*(distanceY - o.bounds.getHeight()/2));
 
-        if (distanceX <= (o.bounds.width/2)) { return true; }
-        if (distanceY <= (o.bounds.height/2)) { return true; }
-
-        float distanceToCorner = ((distanceX - o.bounds.getWidth()/2)*(distanceX - o.bounds.getWidth()/2))+
-                ((distanceY - o.bounds.getHeight()/2)*(distanceY - o.bounds.getHeight()/2));
-
-        return (distanceToCorner <= (radius*radius));
+        //return (distanceToCorner <= (radius*radius));
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
