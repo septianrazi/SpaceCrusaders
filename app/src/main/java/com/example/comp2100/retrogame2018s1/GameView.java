@@ -31,17 +31,11 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
     float yMax;
 
-    float rectx = 1000;
-    float recty = 670;
-    int w;
-    int h;
-
     SpaceShip spaceship;
 
     Paint p;
     Handler timer;
     static GameObjectList gameObjects = new GameObjectList();
-    Obstacle obstacle;
 
     /**
      *

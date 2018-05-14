@@ -7,12 +7,12 @@
     xmlns:scrolling_image_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.comp2100.retrogame2018s1.GameActivity">
 
-    <!--<com.q42.android.scrollingimageview.ScrollingImageView-->
-        <!--android:id="@+id/scrolling_background"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--scrolling_image_view:speed="1dp"-->
-        <!--scrolling_image_view:src="@drawable/game_back" />-->
+    <com.q42.android.scrollingimageview.ScrollingImageView
+        android:id="@+id/scrolling_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        scrolling_image_view:speed="1dp"
+        scrolling_image_view:src="@drawable/game_back" />
 
     <com.example.comp2100.retrogame2018s1.GameView
         android:layout_width="wrap_content"
