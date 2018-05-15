@@ -23,6 +23,8 @@
             android:launchMode="singleInstance"></activity>
         <activity android:name=".OptionsActivity"
             android:launchMode="singleInstance"></activity>
+        <activity android:name=".GameOverActivity" android:theme="@style/AppTheme.CustomTheme">
+        </activity>
     </application>
 
 </manifest>
