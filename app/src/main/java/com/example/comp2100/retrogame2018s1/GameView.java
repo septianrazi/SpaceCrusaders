@@ -73,13 +73,18 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
+        // Prevent game from starting when its game over
+        if (GlobalGameVariables.gameRunning == GameState.OVER) {
+            return false;
+        }
+
         // Un-pause the game if its paused
-        if (!GlobalGameVariables.gameRunning) {
-            GlobalGameVariables.gameRunning = true;
+        if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
+            GlobalGameVariables.gameRunning = GameState.RUNNING;
             timer.postDelayed(this,10);
         }
 
-        if (GlobalGameVariables.gameRunning)
+        if (GlobalGameVariables.gameRunning == GameState.RUNNING)
         { // Run normal on touch/tap code if the games not paused
             spaceship.speed =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
@@ -100,7 +105,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         spaceship.update();
 
         this.invalidate();
-        if (GlobalGameVariables.gameRunning)
+        if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
     }
 }
