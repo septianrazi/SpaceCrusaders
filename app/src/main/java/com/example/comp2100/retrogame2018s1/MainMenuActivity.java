@@ -30,7 +30,7 @@ public class MainMenuActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Getting the width and height of the screen
         GlobalGameVariables.windowWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
