@@ -51,7 +51,6 @@ public class Obstacle extends GameObject {
         // Move the obstacle across the screen
         for(int i = 0; i < allBounds.length; i++)
             allBounds[i].SetX(allBounds[i].GetX() - GlobalGameVariables.scrollSpeed);
-        this.invalidate();
     }
 
     @Override
@@ -62,8 +61,8 @@ public class Obstacle extends GameObject {
         int top = (int) (allBounds[1].GetY() - allBounds[1].getHeight()/2);
         int bottom = (int) (allBounds[1].GetY() + allBounds[1].getHeight()/2);
         Rect rect = new Rect(left, top, right, bottom);
-        canvas.drawRect(left, top, right, bottom, p);
-        //canvas.drawBitmap(top_image, null, rect, null);
+        //canvas.drawRect(left, top, right, bottom, p);
+        canvas.drawBitmap(top_image, null, rect, null);
 
         // Draw the bottom part of the obstacle
         left = (int) (allBounds[2].GetX() - allBounds[2].getWidth()/2);
@@ -71,10 +70,8 @@ public class Obstacle extends GameObject {
         top = (int) (allBounds[2].GetY() - allBounds[2].getHeight()/2);
         bottom = (int) (allBounds[2].GetY() + allBounds[2].getHeight()/2);
         rect = new Rect(left, top, right, bottom);
-        canvas.drawRect(left, top, right, bottom, p);
-
-        //canvas.drawBitmap(bottom_image, null, rect, null);
-        this.invalidate();
+        //canvas.drawRect(left, top, right, bottom, p);
+        canvas.drawBitmap(bottom_image, null, rect, null);
     }
 
 }
