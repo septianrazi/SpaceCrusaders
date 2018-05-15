@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.concurrent.Semaphore;
 
 /*
     Created by Septian Razi, 19/04/2018
+    Edited by Jasper McNiven 25/04/2018
     Edited by Kriti Tripathi, 07/05/2018
     ACtivity for the Game to be played
  */
@@ -39,13 +41,27 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        GlobalGameVariables.gameRunning = false;
+
+        final ImageView imageView_pause = findViewById(R.id.imageView_pause);
+
         final Button button_pause = findViewById(R.id.btn_pauseGame);
         final Button button_help = findViewById(R.id.btn_help);
         final Button button_quit = findViewById(R.id.btn_quit);
 
         button_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-
+                if (GlobalGameVariables.gameRunning) {
+                    GlobalGameVariables.gameRunning = false;
+                    button_pause.setText("Resume Game");
+                    imageView_pause.setVisibility(View.VISIBLE);
+                }
+                else {
+                    GlobalGameVariables.gameRunning = true;
+                    button_pause.setText("Pause Game");
+                    imageView_pause.setVisibility(View.GONE);
+                }
             }
         });
 

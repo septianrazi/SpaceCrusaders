@@ -31,17 +31,11 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
     float yMax;
 
-    float rectx = 1000;
-    float recty = 670;
-    int w;
-    int h;
-
     SpaceShip spaceship;
 
     Paint p;
     Handler timer;
     static GameObjectList gameObjects = new GameObjectList();
-    Obstacle obstacle;
 
     /**
      *
@@ -59,10 +53,9 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         // Set up the game loop
         timer = new Handler();
-        timer.postDelayed(this,10);
 
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
-        float spaceshipY = 2 * GlobalGameVariables.windowHeight / 5;
+        float spaceshipY = GlobalGameVariables.windowHeight / 2;
         spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
         ObstacleGenerator.NewGame(context, attrs);
     }
@@ -80,13 +73,21 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        spaceship.speed =  -GlobalGameVariables.jumpSpeed;
-        this.invalidate();
-        System.out.println(effectsOn);
-        System.out.println(context);
-        if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
-        SoundEffectsManager.getInstance().start();}
+        // Un-pause the game if its paused
+        if (!GlobalGameVariables.gameRunning) {
+            GlobalGameVariables.gameRunning = true;
+            timer.postDelayed(this,10);
+        }
 
+        if (GlobalGameVariables.gameRunning)
+        { // Run normal on touch/tap code if the games not paused
+            spaceship.speed =  -GlobalGameVariables.jumpSpeed;
+            this.invalidate();
+            System.out.println(effectsOn);
+            System.out.println(context);
+            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
+                SoundEffectsManager.getInstance().start();}
+        }
         return false;
     }
 
@@ -98,25 +99,8 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         gameObjects.Update();
         spaceship.update();
 
-//        speed += GlobalGameVariables.gravity;
-//
-//        if (yt >= yMax-100.0f)
-//        {
-//            speed = 0;
-//            spaceship.p.setColor(Color.BLACK);
-//        } else {
-//            yt+= speed;
-//            spaceship.p.setColor(Color.RED);
-//        }
-//
-//        if (yt <= 50.0f)
-//        {
-//            yt = 50.0f;
-//            speed = 0;
-//            spaceship.p.setColor(Color.BLUE);
-//        }
-//        spaceship.bounds.SetPosition(xt, yt);
         this.invalidate();
-        timer.postDelayed(this,REFRESH_TIME);
+        if (GlobalGameVariables.gameRunning)
+            timer.postDelayed(this,REFRESH_TIME);
     }
 }
