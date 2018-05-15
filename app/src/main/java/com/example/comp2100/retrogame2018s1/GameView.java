@@ -59,7 +59,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Initialise the players spaceship
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
-        spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
+        spaceship = new SpaceShip(context, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
 
         // Initialise the obstacles
         ObstacleGenerator.NewGame(context, attrs);
