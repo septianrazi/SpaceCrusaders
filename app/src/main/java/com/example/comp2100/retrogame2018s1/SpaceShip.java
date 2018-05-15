@@ -2,9 +2,11 @@ package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
@@ -17,20 +19,26 @@ public class SpaceShip extends GameObject {
 
     float speed = 0.0f;
     float yMax;
-    Bitmap image;
+    Bitmap[] spaceshipImages = new Bitmap[3];
 
     float radius;
     Paint p;
-    public SpaceShip(Context context, Bitmap image, Bounds bounds, @Nullable AttributeSet attrs) {
+    public SpaceShip(Context context, Bounds bounds, @Nullable AttributeSet attrs) {
         super(context, attrs, bounds);
 
-
         this.radius = bounds.getWidth()/2;
-        this.image = image;
-
+        this.yMax = GlobalGameVariables.windowHeight;
         this.p = new Paint();
         p.setColor(Color.GREEN);
         p.setStrokeWidth(3);
+
+        //Load the images for the spaceship
+        spaceshipImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.idle_ufo);
+        spaceshipImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ini_ufo);
+        spaceshipImages[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_ufo);
+        spaceshipImages[0].prepareToDraw();
+        spaceshipImages[1].prepareToDraw();
+        spaceshipImages[2].prepareToDraw();
     }
 
     /**
@@ -69,11 +77,18 @@ public class SpaceShip extends GameObject {
      */
     @Override
     protected void OnDraw(Canvas canvas) {
-
-        yMax = canvas.getHeight();
-        canvas.drawCircle(this.bounds.GetX(),this.bounds.GetY(),this.bounds.getWidth(), p);
-        //canvas.drawBitmap(image, this.bounds.GetX(), this.bounds.GetY());
-
+        //canvas.drawCircle(this.bounds.GetX(),this.bounds.GetY(),this.bounds.getWidth(), p);
+        int left = (int) (bounds.GetX() - bounds.getWidth()/2);
+        int right = (int) (bounds.GetX() + bounds.getWidth()/2);
+        int top = (int) (bounds.GetY() - bounds.getHeight()/2);
+        int bottom = (int) (bounds.GetY() + bounds.getHeight()/2);
+        Rect rect = new Rect(left, top, right, bottom);
+        if (speed <= 0)
+            canvas.drawBitmap(spaceshipImages[0], null, rect, null);
+        else if (speed > GlobalGameVariables.jumpSpeed / 2)
+            canvas.drawBitmap(spaceshipImages[2], null, rect, null);
+        else
+            canvas.drawBitmap(spaceshipImages[1], null, rect, null);
     }
 
     /**
@@ -100,16 +115,6 @@ public class SpaceShip extends GameObject {
         {
             return false;
         }
-//        if (distanceX > (o.bounds.getWidth()/2 + radius)) { return false; }
-//        if (distanceY > (o.bounds.getHeight()/2 + radius)){ return false;}
-//
-//        if (distanceX <= (o.bounds.width/2)) { return true; }
-//        if (distanceY <= (o.bounds.height/2)) { return true; }
-//
-//        float distanceToCorner = ((distanceX - o.bounds.getWidth()/2)*(distanceX - o.bounds.getWidth()/2))+
-//                ((distanceY - o.bounds.getHeight()/2)*(distanceY - o.bounds.getHeight()/2));
-
-        //return (distanceToCorner <= (radius*radius));
     }
 
 }
