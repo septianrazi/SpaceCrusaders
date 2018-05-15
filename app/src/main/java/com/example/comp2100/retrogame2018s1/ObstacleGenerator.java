@@ -34,10 +34,10 @@ public class ObstacleGenerator {
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
 
         // Load the obstacle images
-        obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
-        obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
-//        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
-//        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        //obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
+        //obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
+        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
         obstacleImages[0].prepareToDraw();
         obstacleImages[1].prepareToDraw();
 
