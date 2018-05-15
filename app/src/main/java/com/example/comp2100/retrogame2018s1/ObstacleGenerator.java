@@ -19,8 +19,9 @@ public class ObstacleGenerator {
     private static Context context;
     private static AttributeSet attrs;
 
-    // Set up initial obstacles
+    private static Bitmap[] obstacleImages = new Bitmap[2];
 
+    // Set up initial obstacles
     /**
      *
      * @param GameView_context The context within which all the obstacles will be drawn
@@ -28,6 +29,12 @@ public class ObstacleGenerator {
      */
     public static void NewGame(Context GameView_context, @Nullable AttributeSet GameView_attrs)
     {
+        // Load the obstacle images
+//        obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
+//        obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
+        obstacleImages[0] = BitmapFactory.decodeResource(context.GetResources, R.drawable.obstacle);
+        obstacleImages[1] = BitmapFactory.decodeResource(context.GetResources, R.drawable.obstacle);
+
         context = GameView_context;
         attrs = GameView_attrs;
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
@@ -48,11 +55,8 @@ public class ObstacleGenerator {
             // Bounds 2 = Bottom part of the obstacle
             yPos = yPos + boundsHeight12 + boundsHeight0;
             bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
-            // Load the obstacles images
-            Bitmap top_image = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
-            Bitmap bottom_image = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
             // Make the new obstacle with the bounds and images calculated above
-            Obstacle tmpOb = new Obstacle(context, attrs, top_image, bottom_image, bounds);
+            Obstacle tmpOb = new Obstacle(context, attrs, obstacleImages[0], obstacleImages[0], bounds);
             GameView.gameObjects.add(tmpOb);
             xPos += OBSTACLE_SPACING;
         }
@@ -79,11 +83,8 @@ public class ObstacleGenerator {
         // Bounds 2 = Bottom part of the obstacle
         yPos = yPos + boundsHeight12 + boundsHeight0;
         bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
-        // Load the obstacles images
-        Bitmap top_image = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
-        Bitmap bottom_image = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
         // Make the new obstacle with the bounds and images calculated above
-        Obstacle tmpOb = new Obstacle(context, attrs, top_image, bottom_image, bounds);
+        Obstacle tmpOb = new Obstacle(context, attrs, obstacleImages[0], obstacleImages[0], bounds);
         int index = GameView.gameObjects.indexOf(obstacle);
         GameView.gameObjects.set(index, tmpOb);
     }
