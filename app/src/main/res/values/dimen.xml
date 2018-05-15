@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ScoreFontSize">20sp</dimen>
+    <dimen name="ScoreFontSize">35sp</dimen>
 </resources>

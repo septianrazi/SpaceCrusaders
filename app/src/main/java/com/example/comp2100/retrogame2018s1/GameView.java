@@ -22,6 +22,7 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn
 /**
  * Created by Septian Razi on 19-Apr-18.
  * Edited by Jasper McNiven to include the game loop and GameObject list
+ *
  * View used for GameActivity, contains the main game loop and central game logic
  */
 
@@ -54,12 +55,17 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Set up the game loop
         timer = new Handler();
 
+        // Initialise the players spaceship
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
         spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
+
+        // Initialise the obstacles
         ObstacleGenerator.NewGame(context, attrs);
+
+        // Initialise the score view
         float scoreViewX = GlobalGameVariables.windowWidth / 2;
-        float scoreViewY = GlobalGameVariables.windowHeight / 5;
+        float scoreViewY = GlobalGameVariables.windowHeight / 6;
         gameObjects.add(new ScoreView(context, attrs, new Bounds(scoreViewX, scoreViewY, 0, 0)));
     }
 
