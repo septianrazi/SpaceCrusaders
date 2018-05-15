@@ -2,6 +2,7 @@ package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -22,24 +23,12 @@ import java.util.concurrent.Semaphore;
  */
 
 public class GameActivity extends AppCompatActivity {
-    private  static Context mContext;
-
-    public static Context getContext() {
-        return mContext;
-    }
-
-    public static void setContext(Context mContext1) {
-        mContext = mContext1;
-    }
-
-    public GameActivity(){
-        setContext(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 

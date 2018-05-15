@@ -1,6 +1,7 @@
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         // Getting the width and height of the screen
         GlobalGameVariables.windowWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
