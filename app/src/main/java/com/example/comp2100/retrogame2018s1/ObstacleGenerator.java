@@ -32,8 +32,8 @@ public class ObstacleGenerator {
         // Load the obstacle images
 //        obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
 //        obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
-        obstacleImages[0] = BitmapFactory.decodeResource(context.GetResources, R.drawable.obstacle);
-        obstacleImages[1] = BitmapFactory.decodeResource(context.GetResources, R.drawable.obstacle);
+        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
 
         context = GameView_context;
         attrs = GameView_attrs;
