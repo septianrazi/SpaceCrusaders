@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Switch;
 
+import com.q42.android.scrollingimageview.ScrollingImageView;
+
 import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
 import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
 
@@ -32,6 +34,11 @@ public class MainMenuActivity extends AppCompatActivity{
         GlobalGameVariables.windowWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         GlobalGameVariables.windowHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+        // Setting the scrolling background parameters
+        final ScrollingImageView scrolling_background = findViewById(R.id.scrolling_background);
+        scrolling_background.setSpeed(0);
+        scrolling_background.setScaleX(1);
+        scrolling_background.setScaleY(1);
 
         // Adding buttons and menus
         final Button button_game = findViewById(R.id.btn_newGame);
