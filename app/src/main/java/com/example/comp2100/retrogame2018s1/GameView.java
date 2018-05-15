@@ -2,6 +2,7 @@ package com.example.comp2100.retrogame2018s1;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -116,5 +117,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         this.invalidate();
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
+        if (GlobalGameVariables.gameRunning == GameState.OVER)
+            context.startActivity(new Intent(context, GameOverActivity.class));
     }
 }
