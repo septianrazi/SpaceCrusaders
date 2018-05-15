@@ -17,6 +17,7 @@ public class SpaceShip extends GameObject {
 
     float speed = 0.0f;
     float yMax;
+    Bitmap image;
 
     float radius;
     Paint p;
@@ -25,12 +26,16 @@ public class SpaceShip extends GameObject {
 
 
         this.radius = bounds.getWidth()/2;
+        this.image = image;
 
         this.p = new Paint();
         p.setColor(Color.GREEN);
         p.setStrokeWidth(3);
     }
 
+    /**
+     * Update the variables of the spaceship - called when run
+     */
     @Override
     public void update() {
         speed += GlobalGameVariables.gravity;
@@ -57,11 +62,16 @@ public class SpaceShip extends GameObject {
         }
     }
 
+    /**
+     * Function to draw the spaceship character
+     * @param canvas Canvas to draw on
+     */
     @Override
     protected void OnDraw(Canvas canvas) {
 
         yMax = canvas.getHeight();
         canvas.drawCircle(this.bounds.GetX(),this.bounds.GetY(),this.bounds.getWidth(), p);
+        //canvas.drawBitmap(image, this.bounds.GetX(), this.bounds.GetY());
 
     }
 
