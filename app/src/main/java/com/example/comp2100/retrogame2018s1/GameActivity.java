@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        GlobalGameVariables.gameRunning = false;
+        GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
         final ImageView imageView_pause = findViewById(R.id.imageView_pause);
 
@@ -52,13 +52,13 @@ public class GameActivity extends AppCompatActivity {
         button_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (GlobalGameVariables.gameRunning) {
-                    GlobalGameVariables.gameRunning = false;
+                if (GlobalGameVariables.gameRunning == GameState.RUNNING) {
+                    GlobalGameVariables.gameRunning = GameState.PAUSED;
                     button_pause.setText("Resume Game");
                     imageView_pause.setVisibility(View.VISIBLE);
                 }
                 else {
-                    GlobalGameVariables.gameRunning = true;
+                    GlobalGameVariables.gameRunning = GameState.RUNNING;
                     button_pause.setText("Pause Game");
                     imageView_pause.setVisibility(View.GONE);
                 }
