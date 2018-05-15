@@ -29,15 +29,18 @@ public class ObstacleGenerator {
      */
     public static void NewGame(Context GameView_context, @Nullable AttributeSet GameView_attrs)
     {
-        // Load the obstacle images
-//        obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
-//        obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.obstacle, OBSTACLE_WIDTH, boundsHeight12);
-        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
-        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
-
         context = GameView_context;
         attrs = GameView_attrs;
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
+
+        // Load the obstacle images
+        //obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
+        //obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
+        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        obstacleImages[0].prepareToDraw();
+        obstacleImages[1].prepareToDraw();
+
         Random rand = new Random();
         int obstacleCount = 3;
         int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING * 2;

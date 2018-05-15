@@ -5,5 +5,5 @@ package com.example.comp2100.retrogame2018s1;
  * Enumeration class for GameState to determine the current state of game
  */
 public enum GameState {
-    RUNNING, PAUSED, OVER
+    PRETOUCH, RUNNING, PAUSED, OVER
 }

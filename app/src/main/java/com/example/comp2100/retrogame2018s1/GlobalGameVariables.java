@@ -16,6 +16,6 @@ public class GlobalGameVariables {
     public static int characterRadius = 50; // The radius of the character used for collision
     public static int windowWidth; // The width of the window
     public static int windowHeight; // The height of the window
-    public static boolean gameRunning; // The state of the game, true = running, false = paused/ stopped
+    public static GameState gameRunning; // The state of the game, true = running, false = paused/ stopped
 
 }

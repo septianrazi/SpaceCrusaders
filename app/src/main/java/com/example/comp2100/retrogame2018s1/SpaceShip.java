@@ -40,8 +40,8 @@ public class SpaceShip extends GameObject {
     public void update() {
         speed += GlobalGameVariables.gravity;
 
-        if (bounds.GetY() >= yMax-100.0f)
-        {
+        if (bounds.GetY() >= yMax) {
+            GlobalGameVariables.gameRunning = GameState.OVER;
             speed = 0;
             p.setColor(Color.BLACK);
         } else {
@@ -58,6 +58,7 @@ public class SpaceShip extends GameObject {
         for (GameObject o : GameView.gameObjects){
             if (collision(o)){
                 p.setColor(Color.CYAN);
+                GlobalGameVariables.gameRunning = GameState.OVER;
             }
         }
     }
