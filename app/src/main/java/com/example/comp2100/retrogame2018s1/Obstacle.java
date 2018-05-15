@@ -43,10 +43,11 @@ public class Obstacle extends GameObject {
     @Override
     public void update() {
         // Check if the obstacle is still on the screen, if not delete it and make another
+        // And increment the players score
         if ((bounds.GetX() + bounds.getWidth() / 2) < 0)
         {
-            //GameView.gameObjects.remove(this);
             ObstacleGenerator.ResetObstacle(this); // Replace the old obstacle with a new one
+            Scoring.incrementCurrentScore(1);
         }
         // Move the obstacle across the screen
         for(int i = 0; i < allBounds.length; i++)
