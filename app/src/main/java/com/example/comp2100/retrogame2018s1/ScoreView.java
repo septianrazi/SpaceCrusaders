@@ -18,7 +18,7 @@ public class ScoreView extends GameObject {
         paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(16);
+        paint.setTextSize(50);
     }
 
     @Override
