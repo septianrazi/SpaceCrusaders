@@ -2,6 +2,7 @@ package com.example.comp2100.retrogame2018s1;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,26 +23,21 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn
 /**
  * Created by Septian Razi on 19-Apr-18.
  * Edited by Jasper McNiven to include the game loop and GameObject list
+ *
  * View used for GameActivity, contains the main game loop and central game logic
  */
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
     public Context context;
 
-    private final int REFRESH_TIME = 40; // In milliseconds, e.g. 10 == 100Hz (100 updates per second)
+    private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
     float yMax;
-
-    float rectx = 1000;
-    float recty = 670;
-    int w;
-    int h;
 
     SpaceShip spaceship;
 
     Paint p;
     Handler timer;
     static GameObjectList gameObjects = new GameObjectList();
-    Obstacle obstacle;
 
     /**
      *
@@ -59,11 +55,19 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         // Set up the game loop
         timer = new Handler();
-        timer.postDelayed(this,10);
 
-        spaceship = new SpaceShip(context, null, new Bounds(200.0f, 200.0f, 50,50), attrs);
-        //obstacle = new Obstacle(context,null,  new Bounds (1000.0f, 600.0f, 200, 300), attrs);
+        // Initialise the players spaceship
+        float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
+        float spaceshipY = GlobalGameVariables.windowHeight / 2;
+        spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
+
+        // Initialise the obstacles
         ObstacleGenerator.NewGame(context, attrs);
+
+        // Initialise the score view
+        float scoreViewX = GlobalGameVariables.windowWidth / 2;
+        float scoreViewY = GlobalGameVariables.windowHeight / 6;
+        gameObjects.add(new ScoreView(context, attrs, new Bounds(scoreViewX, scoreViewY, 0, 0)));
     }
 
     @Override
@@ -79,13 +83,26 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        spaceship.speed =  -GlobalGameVariables.jumpSpeed;
-        this.invalidate();
-        System.out.println(effectsOn);
-        System.out.println(context);
-        if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
-        SoundEffectsManager.getInstance().start();}
+        // Prevent game from starting when its game over
+        if (GlobalGameVariables.gameRunning == GameState.OVER) {
+            return false;
+        }
 
+        // Un-pause the game if its paused
+        if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
+            GlobalGameVariables.gameRunning = GameState.RUNNING;
+            timer.postDelayed(this,10);
+        }
+
+        if (GlobalGameVariables.gameRunning == GameState.RUNNING)
+        { // Run normal on touch/tap code if the games not paused
+            spaceship.speed =  -GlobalGameVariables.jumpSpeed;
+            this.invalidate();
+            System.out.println(effectsOn);
+            System.out.println(context);
+            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
+                SoundEffectsManager.getInstance().start();}
+        }
         return false;
     }
 
@@ -97,25 +114,10 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         gameObjects.Update();
         spaceship.update();
 
-//        speed += GlobalGameVariables.gravity;
-//
-//        if (yt >= yMax-100.0f)
-//        {
-//            speed = 0;
-//            spaceship.p.setColor(Color.BLACK);
-//        } else {
-//            yt+= speed;
-//            spaceship.p.setColor(Color.RED);
-//        }
-//
-//        if (yt <= 50.0f)
-//        {
-//            yt = 50.0f;
-//            speed = 0;
-//            spaceship.p.setColor(Color.BLUE);
-//        }
-//        spaceship.bounds.SetPosition(xt, yt);
         this.invalidate();
-        timer.postDelayed(this,REFRESH_TIME);
+        if (GlobalGameVariables.gameRunning == GameState.RUNNING)
+            timer.postDelayed(this,REFRESH_TIME);
+        if (GlobalGameVariables.gameRunning == GameState.OVER)
+            context.startActivity(new Intent(context, GameOverActivity.class));
     }
 }

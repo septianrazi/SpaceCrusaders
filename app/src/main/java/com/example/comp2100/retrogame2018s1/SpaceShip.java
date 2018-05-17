@@ -15,10 +15,9 @@ import android.util.AttributeSet;
 
 public class SpaceShip extends GameObject {
 
-    float xt = 200.0f;
-    float yt = 200.0f;
-    float speed = 10.0f;
+    float speed = 0.0f;
     float yMax;
+    Bitmap image;
 
     float radius;
     Paint p;
@@ -26,18 +25,22 @@ public class SpaceShip extends GameObject {
         super(context, attrs, bounds);
 
         this.radius = bounds.getWidth()/2;
+        this.image = image;
 
         this.p = new Paint();
         p.setColor(Color.GREEN);
         p.setStrokeWidth(3);
     }
 
+    /**
+     * Update the variables of the spaceship - called when run
+     */
     @Override
     public void update() {
         speed += GlobalGameVariables.gravity;
 
-        if (bounds.GetY() >= yMax-100.0f)
-        {
+        if (bounds.GetY() >= yMax) {
+            GlobalGameVariables.gameRunning = GameState.OVER;
             speed = 0;
             p.setColor(Color.BLACK);
         } else {
@@ -51,16 +54,24 @@ public class SpaceShip extends GameObject {
             p.setColor(Color.BLUE);
         };
 
-        if (collision(GameView.gameObjects.get(0))){
-            p.setColor(Color.YELLOW);
-        };
+        for (GameObject o : GameView.gameObjects){
+            if (collision(o)){
+                p.setColor(Color.CYAN);
+                GlobalGameVariables.gameRunning = GameState.OVER;
+            }
+        }
     }
 
+    /**
+     * Function to draw the spaceship character
+     * @param canvas Canvas to draw on
+     */
     @Override
     protected void OnDraw(Canvas canvas) {
 
         yMax = canvas.getHeight();
         canvas.drawCircle(this.bounds.GetX(),this.bounds.GetY(),this.bounds.getWidth(), p);
+        //canvas.drawBitmap(image, this.bounds.GetX(), this.bounds.GetY());
 
     }
 
@@ -73,16 +84,43 @@ public class SpaceShip extends GameObject {
         float distanceX = Math.abs(this.bounds.GetX() - o.bounds.GetX());
         float distanceY = Math.abs(this.bounds.GetY() - o.bounds.GetY());
 
-        if (distanceX > (o.bounds.getWidth()/2 + radius)) { return false; }
-        if (distanceY > (o.bounds.getHeight()/2 + radius)){ return false;}
+        if (distanceX <= (o.bounds.width/2) + radius)
+        {
+            if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+//        if (distanceX > (o.bounds.getWidth()/2 + radius)) { return false; }
+//        if (distanceY > (o.bounds.getHeight()/2 + radius)){ return false;}
+//
+//        if (distanceX <= (o.bounds.width/2)) { return true; }
+//        if (distanceY <= (o.bounds.height/2)) { return true; }
+//
+//        float distanceToCorner = ((distanceX - o.bounds.getWidth()/2)*(distanceX - o.bounds.getWidth()/2))+
+//                ((distanceY - o.bounds.getHeight()/2)*(distanceY - o.bounds.getHeight()/2));
 
-        if (distanceX <= (o.bounds.width/2)) { return true; }
-        if (distanceY <= (o.bounds.height/2)) { return true; }
-
-        float distanceToCorner = ((distanceX - o.bounds.getWidth()/2)*(distanceX - o.bounds.getWidth()/2))+
-                ((distanceY - o.bounds.getHeight()/2)*(distanceY - o.bounds.getHeight()/2));
-
-        return (distanceToCorner <= (radius*radius));
+        //return (distanceToCorner <= (radius*radius));
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
