@@ -77,7 +77,7 @@ public class ObstacleGenerator {
     public static void ResetObstacle(Obstacle obstacle)
     {
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth = OBSTACLE_SPACING * 3;
+        int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING * 3;
 
         Bounds[] bounds = new Bounds[3];
 
