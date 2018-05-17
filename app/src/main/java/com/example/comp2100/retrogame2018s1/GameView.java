@@ -22,6 +22,8 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
     private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
 
+
+
     SpaceShip spaceship;
     Handler timer;
     static GameObjectList gameObjects = new GameObjectList();
@@ -38,6 +40,8 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         // Set up the game loop
         timer = new Handler();
+
+        gameObjects.clear();
 
         // Initialise the players spaceship
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
