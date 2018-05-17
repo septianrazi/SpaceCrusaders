@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 
 /**
  * Created by Septian Razi on 19-Apr-18.
+ * Some edits by Jasper McNiven 25th onwards
  * Object for spaceship - character that the player controls
  */
 
@@ -19,18 +20,14 @@ public class SpaceShip extends GameObject {
 
     float speed = 0.0f;
     float yMax;
+    float radius;
     Bitmap[] spaceshipImages = new Bitmap[3];
 
-    float radius;
-    Paint p;
     public SpaceShip(Context context, Bounds bounds, @Nullable AttributeSet attrs) {
         super(context, attrs, bounds);
 
         this.radius = bounds.getWidth()/2;
         this.yMax = GlobalGameVariables.windowHeight;
-        this.p = new Paint();
-        p.setColor(Color.GREEN);
-        p.setStrokeWidth(3);
 
         //Load the images for the spaceship
         spaceshipImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.idle_ufo);
@@ -51,24 +48,24 @@ public class SpaceShip extends GameObject {
         if (bounds.GetY() >= yMax) {
             GlobalGameVariables.gameRunning = GameState.OVER;
             speed = 0;
-            p.setColor(Color.BLACK);
         } else {
             bounds.SetY(bounds.GetY()+speed);
-            p.setColor(Color.RED);
         }
 
         if (bounds.GetY() <= 50.0f) {
             bounds.SetY(50.0f);
             speed = 0;
-            p.setColor(Color.BLUE);
         };
 
         for (GameObject o : GameView.gameObjects){
             if (collision(o)){
-                p.setColor(Color.CYAN);
-                GlobalGameVariables.gameRunning = GameState.OVER;
+                if (o instanceof Obstacle)
+                    GlobalGameVariables.gameRunning = GameState.OVER;
+                else if (o instanceof Coin)
+                    ((Coin) o).collided();
             }
         }
+
     }
 
     /**
@@ -97,26 +94,30 @@ public class SpaceShip extends GameObject {
      * @return True if collision has been detected
      */
     public boolean collision (GameObject o){
+
         float distanceX = Math.abs(this.bounds.GetX() - o.bounds.GetX());
         float distanceY = Math.abs(this.bounds.GetY() - o.bounds.GetY());
 
-        if (distanceX <= (o.bounds.width/2) + radius)
+        if (o instanceof Obstacle)
         {
-            if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+            if (distanceX <= (o.bounds.width/2) + radius)
             {
-                return false;
+                if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+                    return false;
+                else
+                    return true;
             }
             else
-            {
-                return true;
-            }
+                return false;
         }
-        else
+        else // Detect collision with a coin
         {
-            return false;
+            if (distanceX <= radius && distanceY <= radius)
+                return true;
+            else
+                return false;
         }
     }
-
 }
 
 

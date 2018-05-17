@@ -21,7 +21,7 @@ public class CoinGenerator {
     public static void newGame(Context game_context, AttributeSet game_attrs) {
         context = game_context;
         attrs = game_attrs;
-        //coinImage = BitmapFactory.
+        coinImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.coin);
         int coinCount = 3;
         Random rand = new Random();
         int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING * 2;
