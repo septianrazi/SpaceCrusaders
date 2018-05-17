@@ -57,7 +57,7 @@ public class GameActivity extends AppCompatActivity {
         button_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(GameActivity.this, InstructionsActivity.class));
+                startActivity(new Intent(GameActivity.this, HelpActivity.class));
             }
         });
 
