@@ -9,8 +9,10 @@ import android.util.AttributeSet;
 
 public class ScoreView extends GameObject {
 
-    private int timeSinceScoreChange = 0; // Counts to 120 which is 2 seconds
     private boolean displayScoreChange = false;
+
+    private int timeSinceScoreChange = 0; // Counts to 120 which is 2 seconds
+    private int scoreChange = 0;
     private int currentScore = 0;
     private int lastScore = currentScore;
     private Paint paint;
@@ -34,8 +36,11 @@ public class ScoreView extends GameObject {
         lastScore = currentScore;
         currentScore = Scoring.getCurrentScore();
 
-        if (currentScore - lastScore != 0)
+        if (currentScore - lastScore != 0) {
             displayScoreChange = true;
+            scoreChange = currentScore - lastScore;
+            timeSinceScoreChange = 0;
+        }
 
         if (displayScoreChange)
             timeSinceScoreChange++;
