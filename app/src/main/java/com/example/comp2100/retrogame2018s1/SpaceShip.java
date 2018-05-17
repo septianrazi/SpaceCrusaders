@@ -21,8 +21,16 @@ public class SpaceShip extends GameObject {
     float speed = 0.0f;
     float yMax;
     float radius;
+    int currentImage = 0;
     Bitmap[] spaceshipImages = new Bitmap[3];
 
+    /**
+     * This constructor takes in the parameters and deals with them appropriately
+     * It also loads and prepares the spaceship images
+     * @param context
+     * @param bounds
+     * @param attrs
+     */
     public SpaceShip(Context context, Bounds bounds, @Nullable AttributeSet attrs) {
         super(context, attrs, bounds);
 
@@ -39,10 +47,13 @@ public class SpaceShip extends GameObject {
     }
 
     /**
-     * Update the variables of the spaceship - called when run
+     * Update the variables of the spaceship, check collision and set the appropriate image.
+     * Called from the main game loop
      */
     @Override
     public void update() {
+
+        // Update the speed of the spaceship and check the bottom of the screen hasn't been hit
         speed += GlobalGameVariables.gravity;
 
         if (bounds.GetY() >= yMax) {
@@ -57,6 +68,7 @@ public class SpaceShip extends GameObject {
             speed = 0;
         };
 
+        // Check for collision with any GameObjects
         for (GameObject o : GameView.gameObjects){
             if (collision(o)){
                 if (o instanceof Obstacle)
@@ -65,6 +77,14 @@ public class SpaceShip extends GameObject {
                     ((Coin) o).collided();
             }
         }
+
+        // Set the current spaceship image according to the speed
+        if (speed <= 0)
+            currentImage = 2;
+        else if (speed < GlobalGameVariables.jumpSpeed / 2)
+            currentImage = 1;
+        else
+            currentImage = 0;
 
     }
 
@@ -80,12 +100,7 @@ public class SpaceShip extends GameObject {
         int top = (int) (bounds.GetY() - bounds.getHeight()/2);
         int bottom = (int) (bounds.GetY() + bounds.getHeight()/2);
         Rect rect = new Rect(left, top, right, bottom);
-        if (speed <= 0)
-            canvas.drawBitmap(spaceshipImages[0], null, rect, null);
-        else if (speed > GlobalGameVariables.jumpSpeed / 2)
-            canvas.drawBitmap(spaceshipImages[2], null, rect, null);
-        else
-            canvas.drawBitmap(spaceshipImages[1], null, rect, null);
+        canvas.drawBitmap(spaceshipImages[currentImage], null, rect, null);
     }
 
     /**
@@ -95,17 +110,29 @@ public class SpaceShip extends GameObject {
      */
     public boolean collision (GameObject o){
 
+        // Get the distance to the center of the GameObject from the spaceship
         float distanceX = Math.abs(this.bounds.GetX() - o.bounds.GetX());
         float distanceY = Math.abs(this.bounds.GetY() - o.bounds.GetY());
 
-        if (o instanceof Obstacle)
+        if (o instanceof Obstacle) // Detect collision with an obstacle
         {
             if (distanceX <= (o.bounds.width/2) + radius)
             {
-                if (distanceY < ((o.bounds.getHeight() / 2) - radius))
-                    return false;
+                if (bounds.GetY() > o.bounds.GetY()) // Takes into account the empty space in the spaceship image
+                {
+                    float tmpRadius = 3.0f/10.0f * radius;
+                    if (distanceY < ((o.bounds.getHeight() / 2) - tmpRadius))
+                        return false;
+                    else
+                        return true;
+                }
                 else
-                    return true;
+                {
+                    if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+                        return false;
+                    else
+                        return true;
+                }
             }
             else
                 return false;

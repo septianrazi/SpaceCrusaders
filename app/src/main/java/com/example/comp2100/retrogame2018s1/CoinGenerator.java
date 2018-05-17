@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class CoinGenerator {
 
-    private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
+    private static final int COIN_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
     private static final int COIN_WIDTH = GlobalGameVariables.windowWidth / 12;
     private static final int COIN_HEIGHT = COIN_WIDTH;
     private static Context context;
@@ -39,17 +39,17 @@ public class CoinGenerator {
         // Generate the initial coins
         int coinCount = 3;
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth + OBSTACLE_SPACING * 4;
+        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING * 4;
         for (int i = 0; i < coinCount; i++)
         {
             // Set the bounds of the coin(s)
             int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
-            Bounds bounds = new Bounds(xPos + OBSTACLE_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
+            Bounds bounds = new Bounds(xPos + COIN_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
 
             // Make the new coin with the bounds above
             Coin tmpCoin = new Coin(context, attrs, bounds);
             GameView.gameObjects.add(tmpCoin);
-            xPos += OBSTACLE_SPACING * 3;
+            xPos += COIN_SPACING * 3;
         }
     }
 
@@ -60,9 +60,9 @@ public class CoinGenerator {
      */
     public static void resetCoin(Coin coin) {
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth = OBSTACLE_SPACING * 5;
+        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING * 5;
         int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
-        Bounds bounds = new Bounds(xPos + OBSTACLE_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
+        Bounds bounds = new Bounds(xPos + COIN_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
 
         // Make the new coin with the bounds above
         Coin tmpCoin = new Coin(context, attrs, bounds);
