@@ -15,8 +15,8 @@ import java.util.Random;
 public class CoinGenerator {
 
     private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
-    private static final int COIN_WIDTH = GlobalGameVariables.windowWidth / 10;
-    private static final int COIN_HEIGHT = GlobalGameVariables.windowHeight / 10;
+    private static final int COIN_WIDTH = GlobalGameVariables.windowWidth / 12;
+    private static final int COIN_HEIGHT = COIN_WIDTH;
     private static Context context;
     private static AttributeSet attrs;
 
@@ -49,7 +49,7 @@ public class CoinGenerator {
             // Make the new coin with the bounds above
             Coin tmpCoin = new Coin(context, attrs, bounds);
             GameView.gameObjects.add(tmpCoin);
-            xPos += OBSTACLE_SPACING;
+            xPos += OBSTACLE_SPACING * 3;
         }
     }
 
