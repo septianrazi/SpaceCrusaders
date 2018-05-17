@@ -1,58 +1,38 @@
+/**
+ * Created by Septian Razi on 19-Apr-18.
+ * Edited by Jasper McNiven to include the game loop and GameObject list
+ * View used for GameActivity, contains the main game loop and central game logic
+ */
+
 package com.example.comp2100.retrogame2018s1;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.media.AudioAttributes;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
-
 import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
 
-/**
- * Created by Septian Razi on 19-Apr-18.
- * Edited by Jasper McNiven to include the game loop and GameObject list
- *
- * View used for GameActivity, contains the main game loop and central game logic
- */
-
 public class GameView extends View implements View.OnTouchListener, Runnable {
-    public Context context;
 
     private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
-    float yMax;
 
     SpaceShip spaceship;
-
-    Paint p;
     Handler timer;
     static GameObjectList gameObjects = new GameObjectList();
 
     /**
-     *
-     * @param context
-     * @param attrs
+     * This constructor passes its parameters to the view it extends and runs all the code
+     * necessary to initialise the game
+     * @param context The context in which this view is located
+     * @param attrs The arrtibutes of the context and activity
      */
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.setOnTouchListener(this);
-        this.context = context;
-
-        this.p = new Paint();
-        p.setColor(Color.RED);
-        p.setStrokeWidth(3);
 
         // Set up the game loop
         timer = new Handler();
@@ -76,16 +56,27 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         gameObjects.add(new ScoreView(context, attrs, new Bounds(scoreViewX, scoreViewY, 0, 0)));
     }
 
+    /**
+     * This method is responsible for calling the onDraw() methods of every single GameObject in
+     * the game. It is called itself by the main game loop
+     * @param canvas The object with which to draw all the GameObjects
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         // Draw all the GameObjects
         gameObjects.Draw(canvas);
-
-        yMax = canvas.getHeight();
         spaceship.OnDraw(canvas);
     }
 
+    /**
+     * This method captures the event which fires when the player taps the screen
+     * and runs the appropriate code depending on the gamestate
+     * @param view The view in which the event happened
+     * @param motionEvent The details of the event
+     * @return Returns a boolean
+     */
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
@@ -104,25 +95,31 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         { // Run normal on touch/tap code if the games not paused
             spaceship.speed =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
-            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(context, R.raw.jump);
+            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(getContext(), R.raw.jump);
                 SoundEffectsManager.getInstance().start();}
         }
         return false;
     }
 
-    // The below code is called by the handler and is the basis of this programs game loop
+    /**
+     * This method is the main game loop which calls all of the game logic. The looping of this
+     * game loop is facilitated by the use of a handler called timer
+     */
     @Override
-    public void run() { // run/ gameloop are the same thing from our point of view
+    public void run() {
 
         // Update all the GameObjects
         gameObjects.Update();
         spaceship.update();
 
+        // Alert the runtime to redraw this view (calls onDraw())
         this.invalidate();
+
+        // Continue the loop or pause/ game over
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
         if (GlobalGameVariables.gameRunning == GameState.OVER){
-            context.startActivity(new Intent(context, GameOverActivity.class));
+            getContext().startActivity(new Intent(getContext(), GameOverActivity.class));
 
         }
     }
