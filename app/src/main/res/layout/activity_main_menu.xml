@@ -30,14 +30,17 @@
             android:layout_marginBottom="174dp"
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
             android:text="Exit"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_instructions" />
 
         <Button
             android:id="@+id/btn_instructions"
@@ -47,13 +50,16 @@
             android:layout_marginBottom="22dp"
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
             android:text="Instructions"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/btn_exit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.261"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_options" />
 
         <Button
             android:id="@+id/btn_options"
@@ -63,28 +69,32 @@
             android:layout_marginBottom="19dp"
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
             android:text="Options"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/btn_instructions"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.261"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_newGame" />
 
 
         <TextView
             android:id="@+id/welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
+            android:fontFamily="monospace"
             android:gravity="center_horizontal"
-            android:text="Welcome to Space Crusaders!"
+            android:text="Space Crusaders!"
+            android:typeface="normal"
             android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
             android:visibility="visible"
-            tools:text="Welcome to Space Invaders 2!" />
+            tools:text="Space Crusaders!" />
 
 
         <Button
@@ -96,11 +106,12 @@
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
             android:text="New Game"
-            android:textColorLink="whie"
-            android:textSize="18sp"
+            android:textColorLink="@color/colorAccent"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.261"
             app:layout_constraintStart_toStartOf="parent"
             tools:textColor="@android:color/white" />
 
