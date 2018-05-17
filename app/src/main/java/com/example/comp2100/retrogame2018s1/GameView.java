@@ -55,6 +55,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Initialise the score view
         float scoreViewX = GlobalGameVariables.windowWidth / 2;
         float scoreViewY = GlobalGameVariables.windowHeight / 6;
+        Scoring.resetCurrentScore();
         gameObjects.add(new ScoreView(context, attrs, new Bounds(scoreViewX, scoreViewY, 0, 0)));
     }
 
