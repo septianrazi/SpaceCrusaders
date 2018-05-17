@@ -32,8 +32,6 @@ public class GameActivity extends AppCompatActivity {
 
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
-        final ImageView imageView_pause = findViewById(R.id.imageView_pause);
-
         final Button button_pause = findViewById(R.id.btn_pauseGame);
         final Button button_help = findViewById(R.id.btn_help);
         final Button button_quit = findViewById(R.id.btn_quit);

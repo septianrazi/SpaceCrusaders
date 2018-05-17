@@ -24,7 +24,6 @@ public class GameOverActivity extends Activity {
         button_replay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
                 startActivity(intent);
             }
