@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
@@ -19,17 +20,28 @@ public class Coin extends GameObject {
     public void collided()
     {
         Scoring.incrementCurrentScore(coinScoreValue);
+        CoinGenerator.resetCoin(this);
     }
 
     @Override
     public void update() {
         bounds.SetX(bounds.GetX() - GlobalGameVariables.scrollSpeed);
+        if ((bounds.GetX() + bounds.getWidth() / 2) < 0)
+        {
+            CoinGenerator.resetCoin(this); // Replace the old coin with a new one
+        }
     }
 
     @Override
     protected void OnDraw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.RED);
-        canvas.drawCircle(bounds.GetX(), bounds.GetY(), bounds.getWidth() / 2, paint);
+        int left = (int) (bounds.GetX() - bounds.getWidth()/2);
+        int right = (int) (bounds.GetX() + bounds.getWidth()/2);
+        int top = (int) (bounds.GetY() - bounds.getHeight()/2);
+        int bottom = (int) (bounds.GetY() + bounds.getHeight()/2);
+        Rect rect = new Rect(left, top, right, bottom);
+        //canvas.drawCircle(bounds.GetX(), bounds.GetY(), bounds.getWidth() / 2, paint);
+        canvas.drawBitmap(CoinGenerator.coinImage, null, rect, null);
     }
 }

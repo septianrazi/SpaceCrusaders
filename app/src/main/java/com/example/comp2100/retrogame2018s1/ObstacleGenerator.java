@@ -1,13 +1,15 @@
+/**
+ * Created by Jasper McNiven on 10/05/2018
+ * This class holds the methods responsible for the generation and recycling of obstacles for the
+ * game
+ */
+
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 import java.util.Random;
@@ -21,9 +23,9 @@ public class ObstacleGenerator {
 
     public static Bitmap[] obstacleImages = new Bitmap[2];
 
-    // Set up initial obstacles
     /**
-     *
+     * This method is responsible for loading the obstacle images as well as generating the initial
+     * obstacles for the game
      * @param GameView_context The context within which all the obstacles will be drawn
      * @param GameView_attrs Required parameter for use of views
      */
@@ -34,8 +36,6 @@ public class ObstacleGenerator {
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
 
         // Load the obstacle images
-        //obstacleImages[0] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
-        //obstacleImages[1] = decodeSampledBitmapFromResource(context.getResources(), R.drawable.new_obstacle, OBSTACLE_WIDTH, GlobalGameVariables.windowHeight / 2);
         obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
         obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
         obstacleImages[0].prepareToDraw();
@@ -47,17 +47,21 @@ public class ObstacleGenerator {
         for (int i = 0; i < obstacleCount; i++)
         {
             Bounds[] bounds = new Bounds[3];
+
             // Bounds 0 = The empty space through which the player must move
             int boundsHeight0 = GlobalGameVariables.windowHeight/4;
             int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
             bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
+
             // Bounds 1 = Top part of the obstacle
             int boundsHeight12 = boundsHeight0 * 2;
             yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
             bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
             // Bounds 2 = Bottom part of the obstacle
             yPos = yPos + boundsHeight12 + boundsHeight0;
             bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
             // Make the new obstacle with the bounds and images calculated above
             Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
             GameView.gameObjects.add(tmpOb);
@@ -74,62 +78,26 @@ public class ObstacleGenerator {
     {
         Random rand = new Random();
         int xPos = GlobalGameVariables.windowWidth = OBSTACLE_SPACING * 3;
+
         Bounds[] bounds = new Bounds[3];
+
         // Bounds 0 = The empty space through which the player must move
         int boundsHeight0 = GlobalGameVariables.windowHeight/4;
         int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
         bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
+
         // Bounds 1 = Top part of the obstacle
         int boundsHeight12 = boundsHeight0 * 2;
         yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
         bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
         // Bounds 2 = Bottom part of the obstacle
         yPos = yPos + boundsHeight12 + boundsHeight0;
         bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
         // Make the new obstacle with the bounds and images calculated above
         Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
         int index = GameView.gameObjects.indexOf(obstacle);
         GameView.gameObjects.set(index, tmpOb);
-    }
-
-    // The following code was not written by any members of our team, it is the property of Android Dev
-    // The full code sample can be found at https://developer.android.com/topic/performance/graphics/load-bitmap
-    // Used under the following licence: https://creativecommons.org/licenses/by/3.0/
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-    }
-
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) >= reqHeight
-                    && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
     }
 }
