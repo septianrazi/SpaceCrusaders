@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Activity for the GameOver Screen
+ * Created by Septian Razi on 16 May 2018
+ */
 public class GameOverActivity extends Activity {
 
     @Override
@@ -17,15 +21,11 @@ public class GameOverActivity extends Activity {
         setContentView(R.layout.activity_over);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //Set window so it seems like a pop up instead of an entire different activity
         getWindow().setLayout((int) (GlobalGameVariables.windowWidth*0.70),
                 (int) (GlobalGameVariables.windowHeight*0.60));
 
         final Button button_replay = findViewById(R.id.btn_replay);
-        TextView text = (TextView) findViewById(R.id.scoreText);
-        text.setText(""+getIntent().getIntExtra("SCORE", -1));
-
-
-
         button_replay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,5 +33,9 @@ public class GameOverActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        TextView text = (TextView) findViewById(R.id.scoreText);
+        text.setText(""+getIntent().getIntExtra("SCORE", -1));
+
     }
 }

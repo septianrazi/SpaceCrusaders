@@ -12,6 +12,9 @@ import android.util.AttributeSet;
 
 import java.util.Random;
 
+/**
+ *
+ */
 public class CoinGenerator {
 
     private static final int COIN_SPACING = 4 * GlobalGameVariables.windowWidth / 5;

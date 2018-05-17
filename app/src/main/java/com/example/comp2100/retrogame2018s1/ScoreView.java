@@ -25,6 +25,7 @@ public class ScoreView extends GameObject {
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.ScoreFontSize));
+        paint.setTextAlign(Paint.Align.CENTER);
     }
 
     @Override
