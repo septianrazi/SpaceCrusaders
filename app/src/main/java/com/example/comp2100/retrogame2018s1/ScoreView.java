@@ -9,7 +9,10 @@ import android.util.AttributeSet;
 
 public class ScoreView extends GameObject {
 
+    private int timeSinceScoreChange = 0; // Counts to 120 which is 2 seconds
+    private boolean displayScoreChange = false;
     private int currentScore = 0;
+    private int lastScore = currentScore;
     private Paint paint;
 
     public ScoreView(Context context, @Nullable AttributeSet attrs, Bounds bounds)
@@ -24,26 +27,30 @@ public class ScoreView extends GameObject {
     @Override
     /**
      * Gets the current score and stores it locally
-     * Also steps up the difficulty of the game according to the score
+     * Also checks if the score has changed and if it has switches displayScoreChange to true
+     * thus displaying the score change to the player
      */
     public void update() {
+        lastScore = currentScore;
         currentScore = Scoring.getCurrentScore();
-        if (currentScore >= 50)
-        {
-            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 2.0f;
-            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
-            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
-        }
-        else if (currentScore >= 100)
-        {
-            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.5f;
-            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.1f;
-            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.1f;
-        }
+
+        if (currentScore - lastScore != 0)
+            displayScoreChange = true;
+
+        if (displayScoreChange)
+            timeSinceScoreChange++;
+
+        if (timeSinceScoreChange > 120)
+            displayScoreChange = false;
     }
 
+    /**
+     * Draws the score on the screen
+     * @param canvas The object with which to draw the score
+     */
     @Override
     protected void OnDraw(Canvas canvas) {
-        canvas.drawText(Integer.toString(currentScore), bounds.GetX(), bounds.GetY(), paint);
+        String str = Integer.toString(currentScore) + (displayScoreChange ? " + " + Integer.toString(currentScore - lastScore):"");
+        canvas.drawText(str, bounds.GetX(), bounds.GetY(), paint);
     }
 }
