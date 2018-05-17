@@ -20,23 +20,26 @@ public class Scoring {
         if (currentGameScore > 50 && scoreThresholdsCrossed == 0)
         {
             scoreThresholdsCrossed++;
-            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.8f;
-            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.4f;
-            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.4f;
+            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.3f;
+            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
+            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
+            GlobalGameVariables.obstacleVariation = (int) (GlobalGameVariables.obstacleVariation * 1.3f);
         }
         else if (currentGameScore > 100 && scoreThresholdsCrossed == 1)
         {
             scoreThresholdsCrossed++;
-            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.8f;
-            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.4f;
-            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.4f;
+            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.3f;
+            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
+            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
+            GlobalGameVariables.obstacleVariation = (int) (GlobalGameVariables.obstacleVariation * 1.3f);
         }
         else if (currentGameScore > 150 && scoreThresholdsCrossed == 2)
         {
             scoreThresholdsCrossed++;
-            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.8f;
-            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.4f;
-            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.4f;
+            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.3f;
+            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
+            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
+            GlobalGameVariables.obstacleVariation = (int) (GlobalGameVariables.obstacleVariation * 1.3f);
         }
     }
 
