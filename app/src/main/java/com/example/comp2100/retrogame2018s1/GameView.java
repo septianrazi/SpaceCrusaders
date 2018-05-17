@@ -90,8 +90,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
 
         // Un-pause the game if its paused
         if (GlobalGameVariables.gameRunning == GameState.PAUSED) {
-            Button btnPause = findViewById(R.id.btn_pauseGame);
-            btnPause.setText("Pause Game");
+            GameActivity.button_pause.setText("Pause Game");
             GlobalGameVariables.gameRunning = GameState.RUNNING;
             timer.postDelayed(this, 10);
         }

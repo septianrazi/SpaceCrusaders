@@ -24,6 +24,8 @@ import java.util.concurrent.Semaphore;
 
 public class GameActivity extends AppCompatActivity {
 
+    public static Button button_pause;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
 
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
-        final Button button_pause = findViewById(R.id.btn_pauseGame);
+        button_pause = findViewById(R.id.btn_pauseGame);
         final Button button_help = findViewById(R.id.btn_help);
         final Button button_quit = findViewById(R.id.btn_quit);
 
