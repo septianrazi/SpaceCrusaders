@@ -1,13 +1,15 @@
+/**
+ * Created by Jasper McNiven on 10/05/2018
+ * This class holds the methods responsible for the generation and recycling of obstacles for the
+ * game
+ */
+
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 import java.util.Random;
@@ -21,9 +23,9 @@ public class ObstacleGenerator {
 
     public static Bitmap[] obstacleImages = new Bitmap[2];
 
-    // Set up initial obstacles
     /**
-     *
+     * This method is responsible for loading the obstacle images as well as generating the initial
+     * obstacles for the game
      * @param GameView_context The context within which all the obstacles will be drawn
      * @param GameView_attrs Required parameter for use of views
      */
@@ -45,17 +47,21 @@ public class ObstacleGenerator {
         for (int i = 0; i < obstacleCount; i++)
         {
             Bounds[] bounds = new Bounds[3];
+
             // Bounds 0 = The empty space through which the player must move
             int boundsHeight0 = GlobalGameVariables.windowHeight/4;
             int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
             bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
+
             // Bounds 1 = Top part of the obstacle
             int boundsHeight12 = boundsHeight0 * 2;
             yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
             bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
             // Bounds 2 = Bottom part of the obstacle
             yPos = yPos + boundsHeight12 + boundsHeight0;
             bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
             // Make the new obstacle with the bounds and images calculated above
             Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
             GameView.gameObjects.add(tmpOb);
@@ -72,18 +78,23 @@ public class ObstacleGenerator {
     {
         Random rand = new Random();
         int xPos = GlobalGameVariables.windowWidth = OBSTACLE_SPACING * 3;
+
         Bounds[] bounds = new Bounds[3];
+
         // Bounds 0 = The empty space through which the player must move
         int boundsHeight0 = GlobalGameVariables.windowHeight/4;
         int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
         bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
+
         // Bounds 1 = Top part of the obstacle
         int boundsHeight12 = boundsHeight0 * 2;
         yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
         bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
         // Bounds 2 = Bottom part of the obstacle
         yPos = yPos + boundsHeight12 + boundsHeight0;
         bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
+
         // Make the new obstacle with the bounds and images calculated above
         Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
         int index = GameView.gameObjects.indexOf(obstacle);
