@@ -17,5 +17,5 @@ public class GlobalGameVariables {
     public static int windowWidth; // The width of the window
     public static int windowHeight; // The height of the window
     public static GameState gameRunning; // The state of the game
-
+    public static int score = -3; // The state of the game
 }

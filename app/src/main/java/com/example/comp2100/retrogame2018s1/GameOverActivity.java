@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class GameOverActivity extends Activity {
 
@@ -20,6 +21,10 @@ public class GameOverActivity extends Activity {
                 (int) (GlobalGameVariables.windowHeight*0.60));
 
         final Button button_replay = findViewById(R.id.btn_replay);
+        TextView text = (TextView) findViewById(R.id.scoreText);
+        text.setText(""+getIntent().getIntExtra("SCORE", -1));
+
+
 
         button_replay.setOnClickListener(new View.OnClickListener() {
             @Override

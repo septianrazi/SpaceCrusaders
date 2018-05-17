@@ -132,7 +132,10 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
         if (GlobalGameVariables.gameRunning == GameState.OVER){
-            getContext().startActivity(new Intent(getContext(), GameOverActivity.class));
+            GlobalGameVariables.score = Scoring.getCurrentScore();
+            Intent iscore = new Intent(getContext(), GameOverActivity.class);
+            iscore.putExtra("SCORE", Scoring.getCurrentScore());
+            getContext().startActivity(iscore);
 
         }
     }
