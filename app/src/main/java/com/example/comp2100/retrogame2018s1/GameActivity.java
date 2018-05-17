@@ -45,10 +45,6 @@ public class GameActivity extends AppCompatActivity {
                     GlobalGameVariables.gameRunning = GameState.PAUSED;
                     button_pause.setText("Tap to Resume");
                 }
-                else {
-                    GlobalGameVariables.gameRunning = GameState.RUNNING;
-                    button_pause.setText("Pause Game");
-                }
             }
         });
 

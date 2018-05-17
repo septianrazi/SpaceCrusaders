@@ -14,6 +14,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+
 import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
@@ -86,13 +88,20 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         }
 
         // Un-pause the game if its paused
-        if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
+        if (GlobalGameVariables.gameRunning == GameState.PAUSED) {
+            Button btnPause = findViewById(R.id.btn_pauseGame);
+            btnPause.setText("Pause Game");
+            GlobalGameVariables.gameRunning = GameState.RUNNING;
+            timer.postDelayed(this, 10);
+        }
+        else if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
             GlobalGameVariables.gameRunning = GameState.RUNNING;
             timer.postDelayed(this,10);
         }
 
+        // Run normal on touch/tap code if the games not paused
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
-        { // Run normal on touch/tap code if the games not paused
+        {
             spaceship.speed =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
             if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(getContext(), R.raw.jump);
