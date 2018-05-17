@@ -11,7 +11,8 @@ public class ScoreView extends GameObject {
 
     private boolean displayScoreChange = false;
 
-    private int timeSinceScoreChange = 0; // Counts to 120 which is 2 seconds
+    private final int SCORE_CHANGED_DISPLAY_TIME = 60; // 60 ~= 1 second
+    private int timeSinceScoreChange = 0;
     private int scoreChange = 0;
     private int currentScore = 0;
     private int lastScore = currentScore;
@@ -45,7 +46,7 @@ public class ScoreView extends GameObject {
         if (displayScoreChange)
             timeSinceScoreChange++;
 
-        if (timeSinceScoreChange > 120)
+        if (timeSinceScoreChange > SCORE_CHANGED_DISPLAY_TIME)
             displayScoreChange = false;
     }
 
@@ -55,7 +56,7 @@ public class ScoreView extends GameObject {
      */
     @Override
     protected void OnDraw(Canvas canvas) {
-        String str = Integer.toString(currentScore) + (displayScoreChange ? " + " + Integer.toString(currentScore - lastScore):"");
+        String str = Integer.toString(currentScore) + (displayScoreChange ? " + " + Integer.toString(scoreChange):"");
         canvas.drawText(str, bounds.GetX(), bounds.GetY(), paint);
     }
 }
