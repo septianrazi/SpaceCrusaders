@@ -5,7 +5,6 @@ package com.example.comp2100.retrogame2018s1;
  * This class contains a list of variables which are used throughout the various game classes
  */
 
-
 public class GlobalGameVariables {
     public static float gravity = 1.2f; // The speed at which objects falls
     //public static float jumpSpeed = 22*gravity; // The velocity applied to any jumping object/ character
@@ -17,6 +16,6 @@ public class GlobalGameVariables {
     public static int characterRadius = 50; // The radius of the character used for collision
     public static int windowWidth; // The width of the window
     public static int windowHeight; // The height of the window
-    public static GameState gameRunning; // The state of the game, true = running, false = paused/ stopped
+    public static GameState gameRunning; // The state of the game
 
 }

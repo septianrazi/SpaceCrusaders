@@ -20,11 +20,16 @@ public class Coin extends GameObject {
     public void collided()
     {
         Scoring.incrementCurrentScore(coinScoreValue);
+        CoinGenerator.resetCoin(this);
     }
 
     @Override
     public void update() {
         bounds.SetX(bounds.GetX() - GlobalGameVariables.scrollSpeed);
+        if ((bounds.GetX() + bounds.getWidth() / 2) < 0)
+        {
+            CoinGenerator.resetCoin(this); // Replace the old coin with a new one
+        }
     }
 
     @Override
