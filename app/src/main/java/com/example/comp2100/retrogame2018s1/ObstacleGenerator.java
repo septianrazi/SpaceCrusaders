@@ -19,7 +19,7 @@ public class ObstacleGenerator {
     private static Context context;
     private static AttributeSet attrs;
 
-    private static Bitmap[] obstacleImages = new Bitmap[2];
+    public static Bitmap[] obstacleImages = new Bitmap[2];
 
     // Set up initial obstacles
     /**
@@ -59,7 +59,7 @@ public class ObstacleGenerator {
             yPos = yPos + boundsHeight12 + boundsHeight0;
             bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
             // Make the new obstacle with the bounds and images calculated above
-            Obstacle tmpOb = new Obstacle(context, attrs, obstacleImages[0], obstacleImages[0], bounds);
+            Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
             GameView.gameObjects.add(tmpOb);
             xPos += OBSTACLE_SPACING;
         }
@@ -87,7 +87,7 @@ public class ObstacleGenerator {
         yPos = yPos + boundsHeight12 + boundsHeight0;
         bounds[2] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
         // Make the new obstacle with the bounds and images calculated above
-        Obstacle tmpOb = new Obstacle(context, attrs, obstacleImages[0], obstacleImages[0], bounds);
+        Obstacle tmpOb = new Obstacle(context, attrs, 0, 0, bounds);
         int index = GameView.gameObjects.indexOf(obstacle);
         GameView.gameObjects.set(index, tmpOb);
     }

@@ -1,5 +1,6 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -59,10 +60,15 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Initialise the players spaceship
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
-        spaceship = new SpaceShip(context, null, new Bounds(spaceshipX, spaceshipY, 50,50), attrs);
+        float spaceshipSize = GlobalGameVariables.windowWidth / 6;
+        GlobalGameVariables.jumpSpeed = (float) Math.sqrt(2.0 * GlobalGameVariables.gravity * GlobalGameVariables.windowHeight * (4/5));
+        spaceship = new SpaceShip(context, new Bounds(spaceshipX, spaceshipY, spaceshipSize,spaceshipSize), attrs);
 
         // Initialise the obstacles
         ObstacleGenerator.NewGame(context, attrs);
+
+        // Initialise the coins
+        CoinGenerator.newGame(context, attrs);
 
         // Initialise the score view
         float scoreViewX = GlobalGameVariables.windowWidth / 2;
@@ -117,7 +123,9 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         this.invalidate();
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
-        if (GlobalGameVariables.gameRunning == GameState.OVER)
+        if (GlobalGameVariables.gameRunning == GameState.OVER){
             context.startActivity(new Intent(context, GameOverActivity.class));
+
+        }
     }
 }

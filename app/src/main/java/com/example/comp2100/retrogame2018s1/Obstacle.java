@@ -19,7 +19,7 @@ public class Obstacle extends GameObject {
 
     private Paint p;
     private Bounds[] allBounds;
-    private Bitmap top_image, bottom_image;
+    private int top_image, bottom_image;
 
     /**
      *
@@ -30,7 +30,7 @@ public class Obstacle extends GameObject {
      * @param allBounds An array with the bounds of the empty space/ gap at index 0, then index 1 = top part
      *               index 2 = bottom part
      */
-    public Obstacle(Context context, @Nullable AttributeSet attrs, Bitmap top_image, Bitmap bottom_image, Bounds[] allBounds) {
+    public Obstacle(Context context, @Nullable AttributeSet attrs, int top_image, int bottom_image, Bounds[] allBounds) {
         super(context, attrs, allBounds[0]);
         this.top_image = top_image;
         this.bottom_image = bottom_image;
@@ -63,7 +63,7 @@ public class Obstacle extends GameObject {
         int bottom = (int) (allBounds[1].GetY() + allBounds[1].getHeight()/2);
         Rect rect = new Rect(left, top, right, bottom);
         //canvas.drawRect(left, top, right, bottom, p);
-        canvas.drawBitmap(top_image, null, rect, null);
+        canvas.drawBitmap(ObstacleGenerator.obstacleImages[top_image], null, rect, null);
 
         // Draw the bottom part of the obstacle
         left = (int) (allBounds[2].GetX() - allBounds[2].getWidth()/2);
@@ -72,7 +72,7 @@ public class Obstacle extends GameObject {
         bottom = (int) (allBounds[2].GetY() + allBounds[2].getHeight()/2);
         rect = new Rect(left, top, right, bottom);
         //canvas.drawRect(left, top, right, bottom, p);
-        canvas.drawBitmap(bottom_image, null, rect, null);
+        canvas.drawBitmap(ObstacleGenerator.obstacleImages[bottom_image], null, rect, null);
     }
 
 }

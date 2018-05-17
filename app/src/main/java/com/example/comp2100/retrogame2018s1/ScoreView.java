@@ -22,8 +22,24 @@ public class ScoreView extends GameObject {
     }
 
     @Override
+    /**
+     * Gets the current score and stores it locally
+     * Also steps up the difficulty of the game according to the score
+     */
     public void update() {
         currentScore = Scoring.getCurrentScore();
+        if (currentScore >= 50)
+        {
+            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 2.0f;
+            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
+            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
+        }
+        else if (currentScore >= 100)
+        {
+            GlobalGameVariables.scrollSpeed = GlobalGameVariables.scrollSpeed * 1.5f;
+            GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.1f;
+            GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.1f;
+        }
     }
 
     @Override
