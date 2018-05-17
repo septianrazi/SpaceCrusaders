@@ -25,8 +25,6 @@ public class GameOverActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
