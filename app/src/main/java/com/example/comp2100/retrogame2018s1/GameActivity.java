@@ -43,13 +43,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (GlobalGameVariables.gameRunning == GameState.RUNNING) {
                     GlobalGameVariables.gameRunning = GameState.PAUSED;
-                    button_pause.setText("Resume Game");
-                    imageView_pause.setVisibility(View.VISIBLE);
-                }
-                else {
-                    GlobalGameVariables.gameRunning = GameState.RUNNING;
-                    button_pause.setText("Pause Game");
-                    imageView_pause.setVisibility(View.GONE);
+                    button_pause.setText("Tap to Resume");
                 }
             }
         });
