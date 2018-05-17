@@ -1,5 +1,6 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,8 @@ public class HelpActivity extends AppCompatActivity {
         // Implement it
         button_returnHelp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.exit(0);
+                finish();
+                startActivity(new Intent(HelpActivity.this, GameActivity.class));
             }
         });
 
