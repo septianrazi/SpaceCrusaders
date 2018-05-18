@@ -106,7 +106,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Run normal on touch/tap code if the games not paused
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
         {
-            spaceship.speed =  -GlobalGameVariables.jumpSpeed;
+            spaceship.yVel =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
             if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(getContext(), R.raw.jump);
                 SoundEffectsManager.getInstance().start();}

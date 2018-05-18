@@ -18,6 +18,13 @@ public class Bounds {
         this.height = height;
     }
 
+    /**
+     * Alters and sets new bounds
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public void SetBounds(float x, float y, float width, float height)
     {
         this.x = x;
@@ -26,6 +33,10 @@ public class Bounds {
         this.height = height;
     }
 
+    /**
+     * Function to retrieve the current bounds
+     * @return bounds array
+     */
     public float[] GetBounds()
     {
         float[] bounds = {x, y, width, height};
