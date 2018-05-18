@@ -137,6 +137,12 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
             iscore.putExtra("SCORE", Scoring.getCurrentScore());
             getContext().startActivity(iscore);
 
+        } else if (GlobalGameVariables.gameRunning == GameState.PRETOUCH){
+
+            // Initialise the players spaceship
+            float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
+            float spaceshipY = GlobalGameVariables.windowHeight / 2;
+            spaceship.bounds.SetPosition(spaceshipX,spaceshipY);
         }
     }
 }
