@@ -70,8 +70,10 @@ public class SpaceShip extends GameObject {
         // Check for collision with any GameObjects
         for (GameObject o : GameView.gameObjects){
             if (collision(o)){
-                if (o instanceof Obstacle)
+                if (o instanceof Obstacle) {
                     GlobalGameVariables.gameRunning = GameState.OVER;
+                    Scoring.addCurrentScore();
+                }
                 else if (o instanceof Coin)
                     ((Coin) o).collided();
             }

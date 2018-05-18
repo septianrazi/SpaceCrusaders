@@ -42,7 +42,7 @@ public class CoinGenerator {
         // Generate the initial coins
         int coinCount = 3;
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING * 4;
+        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING * 3;
         for (int i = 0; i < coinCount; i++)
         {
             // Set the bounds of the coin(s)
@@ -63,7 +63,7 @@ public class CoinGenerator {
      */
     public static void resetCoin(Coin coin) {
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING * 5;
+        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING;
         int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
         Bounds bounds = new Bounds(xPos + COIN_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
 
