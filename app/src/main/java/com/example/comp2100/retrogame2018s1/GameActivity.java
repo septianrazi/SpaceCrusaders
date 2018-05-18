@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
         super.onStart();
         GlobalGameVariables.gravity = 1.2f; // The speed at which objects falls
         GlobalGameVariables.jumpSpeed = (float) ((Math.sqrt(2.0 * GlobalGameVariables.gravity *
-                (GlobalGameVariables.windowHeight *  (1.0/16.0)))));
+                (GlobalGameVariables.windowHeight *  GlobalGameVariables.jumpSpeedScaling))));
         GlobalGameVariables.scrollSpeed = GlobalGameVariables.defaultScrollSpeed;
     }
 
