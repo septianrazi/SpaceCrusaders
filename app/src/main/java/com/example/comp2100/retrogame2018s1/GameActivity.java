@@ -1,3 +1,11 @@
+
+/**
+*Created by Septian Razi, 19/04/2018
+    Edited by Jasper McNiven 25/04/2018
+    Edited by Kriti Tripathi, 07/05/2018
+    ACtivity for the Game to be played
+*/
+
 package com.example.comp2100.retrogame2018s1;
 
 import android.app.Activity;
@@ -16,12 +24,6 @@ import android.widget.ImageView;
 
 import java.util.concurrent.Semaphore;
 
-/*
-    Created by Septian Razi, 19/04/2018
-    Edited by Jasper McNiven 25/04/2018
-    Edited by Kriti Tripathi, 07/05/2018
-    ACtivity for the Game to be played
- */
 
 public class GameActivity extends AppCompatActivity {
     public static Activity ga;
@@ -35,12 +37,15 @@ public class GameActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ga = this;
 
+        // the game state
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
+        //making the buttons
         button_pause = findViewById(R.id.btn_pauseGame);
         final Button button_help = findViewById(R.id.btn_help);
         final Button button_quit = findViewById(R.id.btn_quit);
 
+        //making the buttons functional
         button_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +82,9 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    /** This method initialises global variables such as speed, gravity etc
+    * when this method is called.
+*/
     public void onStart() {
         super.onStart();
         GlobalGameVariables.gravity = 1.2f; // The speed at which objects falls
