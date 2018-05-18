@@ -34,9 +34,9 @@ public class OptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstances){
         super.onCreate(savedInstances);
         setContentView(R.layout.activity_options);
-
-        // Making a button
-        final Button button_return_2 = findViewById(R.id.btn_returnFromOptions);
+//
+//        // Making a button
+//        final Button button_return_2 = findViewById(R.id.btn_returnFromOptions);
 
         // Creating and configuring switches
         switch_music = findViewById(R.id.switch_music);
@@ -140,11 +140,11 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-        // Make sures that the return button on the screen works
-        button_return_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {finish();}
-        });
+//        // Make sures that the return button on the screen works
+//        button_return_2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {finish();}
+//        });
 
         // Whenever it detects a change in the sound switch, it either starts or stops the music depending on whether the switch is on or ff
         switch_music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
