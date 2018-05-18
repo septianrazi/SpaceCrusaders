@@ -22,8 +22,8 @@
         <activity android:name=".GameActivity"></activity>
         <activity android:name=".InstructionsActivity"></activity>
         <activity android:name=".OptionsActivity"></activity>
-        <activity android:name=".GameOverActivity" android:theme="@style/AppTheme.CustomTheme">
-        </activity>
+        <activity android:name=".GameOverActivity"
+            android:theme="@style/AppTheme.CustomTheme"> </activity>
 
     </application>
 

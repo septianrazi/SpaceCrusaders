@@ -22,14 +22,25 @@ public class GameOverActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //Set window so it seems like a pop up instead of an entire different activity
-        getWindow().setLayout((int) (GlobalGameVariables.windowWidth*0.70),
-                (int) (GlobalGameVariables.windowHeight*0.60));
+        getWindow().setLayout((int) (GlobalGameVariables.windowWidth*1),
+                (int) (GlobalGameVariables.windowHeight*1));
 
         final Button button_replay = findViewById(R.id.btn_replay);
+        final Button button_exit = findViewById(R.id.btn_exitOver);
         button_replay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                GameActivity.ga.finish();
+                Intent intent = new Intent(GameOverActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             }
         });

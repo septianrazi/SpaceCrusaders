@@ -33,6 +33,7 @@
 
     <SeekBar
         android:id="@+id/sb_gravity"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="208dp"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
