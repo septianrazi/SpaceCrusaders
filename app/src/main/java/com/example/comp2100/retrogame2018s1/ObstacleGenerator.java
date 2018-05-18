@@ -36,10 +36,13 @@ public class ObstacleGenerator {
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 3;
 
         // Load the obstacle images
-        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
-        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
-        obstacleImages[0].prepareToDraw();
-        obstacleImages[1].prepareToDraw();
+        if (context != null)
+        {
+            obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
+            obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
+            obstacleImages[0].prepareToDraw();
+            obstacleImages[1].prepareToDraw();
+        }
 
         Random rand = new Random();
         int obstacleCount = 3;

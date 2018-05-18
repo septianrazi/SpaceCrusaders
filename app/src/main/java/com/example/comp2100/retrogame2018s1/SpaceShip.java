@@ -37,12 +37,15 @@ public class SpaceShip extends GameObject {
         this.yMax = GlobalGameVariables.windowHeight;
 
         //Load the images for the spaceship
-        spaceshipImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.idle_ufo);
-        spaceshipImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ini_ufo);
-        spaceshipImages[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_ufo);
-        spaceshipImages[0].prepareToDraw();
-        spaceshipImages[1].prepareToDraw();
-        spaceshipImages[2].prepareToDraw();
+        if (context != null)
+        {
+            spaceshipImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.idle_ufo);
+            spaceshipImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.ini_ufo);
+            spaceshipImages[2] = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_ufo);
+            spaceshipImages[0].prepareToDraw();
+            spaceshipImages[1].prepareToDraw();
+            spaceshipImages[2].prepareToDraw();
+        }
     }
 
     /**
