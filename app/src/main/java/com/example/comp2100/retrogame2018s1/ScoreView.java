@@ -1,3 +1,7 @@
+/** this class was created by Jasper on 15/05/18
+* This class displays the score
+*/
+
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;

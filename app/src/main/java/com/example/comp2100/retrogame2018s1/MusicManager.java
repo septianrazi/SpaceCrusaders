@@ -1,3 +1,7 @@
+/*    Created and edited by Kriti Tripathi, 08/05/2018
+      This class allows the background music to be easily handled.
+ */
+
 package com.example.comp2100.retrogame2018s1;
 
 import android.content.Context;
