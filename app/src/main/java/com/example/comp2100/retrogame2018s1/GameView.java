@@ -135,6 +135,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
             iscore.putExtra("SCORE", Scoring.getCurrentScore());
             getContext().startActivity(iscore);
 
+
         } else if (GlobalGameVariables.gameRunning == GameState.PRETOUCH){
 
             // Initialise the players spaceship

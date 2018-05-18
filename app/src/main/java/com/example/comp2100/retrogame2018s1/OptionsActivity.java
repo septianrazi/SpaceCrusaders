@@ -34,9 +34,9 @@ public class OptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstances){
         super.onCreate(savedInstances);
         setContentView(R.layout.activity_options);
-
-        // Making a button
-        final Button button_return_2 = findViewById(R.id.btn_returnFromOptions);
+//
+//        // Making a button
+//        final Button button_return_2 = findViewById(R.id.btn_returnFromOptions);
 
         // Creating and configuring switches
         switch_music = findViewById(R.id.switch_music);
@@ -82,16 +82,16 @@ public class OptionsActivity extends AppCompatActivity {
                 }
                 if (selectedID == button_medium.getId()){
                     seekBar_speed.setProgress(5);
-                    seekBar_gravity.setProgress(5);
+                    seekBar_gravity.setProgress(3);
                     current_speed = 5;
-                    current_gravity = 5;
+                    current_gravity = 3;
                     setText();
                 }
                 if (selectedID == button_hard.getId()){
                     seekBar_speed.setProgress(8);
-                    seekBar_gravity.setProgress(9);
+                    seekBar_gravity.setProgress(4);
                     current_speed = 8;
-                    current_gravity = 9;
+                    current_gravity = 4;
                     setText();
                 }
             }
@@ -109,16 +109,10 @@ public class OptionsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-
-        });
+            public void onStopTrackingTouch(SeekBar seekBar) {}});
 
         // Detects a change in the gravity seekbar and saves it
         seekBar_gravity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -127,41 +121,34 @@ public class OptionsActivity extends AppCompatActivity {
                 current_gravity = progress;
                 setText();
                 setGlobalVariables();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
-            }
-        });
-
-        // Make sures that the return button on the screen works
-        button_return_2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {finish();}
-        });
+            public void onStopTrackingTouch(SeekBar seekBar) {}});
 
-        // Whenever it detects a change in the sound switch, it either starts or stops the music depending on whether the switch is on or ff
-        switch_music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isOn) {
-                if (!isOn) {
-                    MusicManager.getInstance().stop();
-                txt_music.setText("Sound is off!");
-                } else {
-                    MusicManager.getInstance().initalizeMediaPlayer(OptionsActivity.this, R.raw.ring);
-                    MusicManager.getInstance().start();
-                    txt_music.setText("Sound is on!");
-                }
-                soundOn = isOn;
-                System.out.println(isOn);
-            }
-        });
+
+
+
+                // Whenever it detects a change in the sound switch, it either starts or stops the music depending on whether the switch is on or ff
+                switch_music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean isOn) {
+                        if (!isOn) {
+                            MusicManager.getInstance().stop();
+                            txt_music.setText("Sound is off!");
+                        } else {
+                            MusicManager.getInstance().initalizeMediaPlayer(OptionsActivity.this, R.raw.ring);
+                            MusicManager.getInstance().start();
+                            txt_music.setText("Sound is on!");
+                        }
+                        soundOn = isOn;
+                        System.out.println(isOn);
+                    }
+                });
 
         switch_effects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.comp2100.retrogame2018s1;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -23,6 +24,7 @@ import java.util.concurrent.Semaphore;
  */
 
 public class GameActivity extends AppCompatActivity {
+    public static Activity ga;
 
     public static Button button_pause;
 
@@ -31,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        ga = this;
 
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
