@@ -47,7 +47,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
         float spaceshipSize = GlobalGameVariables.windowWidth / 6;
-        GlobalGameVariables.jumpSpeed = 16*GlobalGameVariables.gravity;//(float) Math.sqrt(2.0 * GlobalGameVariables.gravity * (GlobalGameVariables.windowHeight * (2/5)));
+        //GlobalGameVariables.jumpSpeed = //(float) Math.sqrt(2.0 * GlobalGameVariables.gravity * (GlobalGameVariables.windowHeight * (2/5)));
         spaceship = new SpaceShip(context, new Bounds(spaceshipX, spaceshipY, spaceshipSize,spaceshipSize), attrs);
 
         // Initialise the obstacles
@@ -106,7 +106,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Run normal on touch/tap code if the games not paused
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
         {
-            spaceship.speed =  -GlobalGameVariables.jumpSpeed;
+            spaceship.yVel =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
             if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(getContext(), R.raw.jump);
                 SoundEffectsManager.getInstance().start();}
@@ -132,8 +132,17 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
         if (GlobalGameVariables.gameRunning == GameState.OVER){
-            getContext().startActivity(new Intent(getContext(), GameOverActivity.class));
+            GlobalGameVariables.score = Scoring.getCurrentScore();
+            Intent iscore = new Intent(getContext(), GameOverActivity.class);
+            iscore.putExtra("SCORE", Scoring.getCurrentScore());
+            getContext().startActivity(iscore);
 
+        } else if (GlobalGameVariables.gameRunning == GameState.PRETOUCH){
+
+            // Initialise the players spaceship
+            float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
+            float spaceshipY = GlobalGameVariables.windowHeight / 2;
+            spaceship.bounds.SetPosition(spaceshipX,spaceshipY);
         }
     }
 }

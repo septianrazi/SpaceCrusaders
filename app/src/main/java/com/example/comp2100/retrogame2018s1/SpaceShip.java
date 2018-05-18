@@ -18,7 +18,6 @@ import android.util.AttributeSet;
 
 public class SpaceShip extends GameObject {
 
-    float speed = 0.0f;
     float yMax;
     float radius;
     int currentImage = 0;
@@ -54,18 +53,18 @@ public class SpaceShip extends GameObject {
     public void update() {
 
         // Update the speed of the spaceship and check the bottom of the screen hasn't been hit
-        speed += GlobalGameVariables.gravity;
+        yVel += GlobalGameVariables.gravity;
 
         if (bounds.GetY() >= yMax) {
             GlobalGameVariables.gameRunning = GameState.OVER;
-            speed = 0;
+            yVel = 0;
         } else {
-            bounds.SetY(bounds.GetY()+speed);
+            bounds.SetY(bounds.GetY()+yVel);
         }
 
         if (bounds.GetY() <= 50.0f) {
             bounds.SetY(50.0f);
-            speed = 0;
+            yVel = 0;
         };
 
         // Check for collision with any GameObjects
@@ -78,10 +77,10 @@ public class SpaceShip extends GameObject {
             }
         }
 
-        // Set the current spaceship image according to the speed
-        if (speed <= 0)
+        // Set the current spaceship image according to the yVel
+        if (yVel <= 0)
             currentImage = 2;
-        else if (speed < GlobalGameVariables.jumpSpeed / 2)
+        else if (yVel < GlobalGameVariables.jumpSpeed / 2)
             currentImage = 1;
         else
             currentImage = 0;

@@ -51,17 +51,34 @@ public class GameActivity extends AppCompatActivity {
         button_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(GameActivity.this, HelpActivity.class));
+
+                GlobalGameVariables.gameRunning = GameState.PRETOUCH;
+                Intent intent = new Intent(GameActivity.this, HelpActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                finish();
+                startActivity(intent);
             }
         });
 
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.exit(0);
+                GlobalGameVariables.gameRunning = GameState.PRETOUCH;
+                Intent intent = new Intent(GameActivity.this, MainMenuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                finish();
+                startActivity(intent);
+
             }
         });
 
+    }
+
+    public void onStart() {
+        super.onStart();
+        GlobalGameVariables.gravity = 1.2f; // The speed at which objects falls
+        GlobalGameVariables.jumpSpeed = 16*GlobalGameVariables.gravity;
+        GlobalGameVariables.scrollSpeed = 7.0f; // The speed at which the screen scrolls
     }
 
 }
