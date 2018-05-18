@@ -24,6 +24,7 @@ public class SpaceShip extends GameObject {
     float radius;
     int currentImage = 0;
     Bitmap[] spaceshipImages = new Bitmap[3];
+    boolean bContextNull = false;
 
     /**
      * This constructor takes in the parameters and deals with them appropriately
@@ -48,6 +49,8 @@ public class SpaceShip extends GameObject {
             spaceshipImages[1].prepareToDraw();
             spaceshipImages[2].prepareToDraw();
         }
+        else
+            bContextNull = true;
     }
 
     /**
@@ -61,8 +64,11 @@ public class SpaceShip extends GameObject {
         yVel += GlobalGameVariables.gravity;
 
         if (bounds.GetY() >= yMax) {
-            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(this.getContext(), R.raw.die);
-                SoundEffectsManager.getInstance().start();}
+            if (bContextNull == false)
+            {
+                if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(this.getContext(), R.raw.die);
+                    SoundEffectsManager.getInstance().start();}
+            }
             GlobalGameVariables.gameRunning = GameState.OVER;
             yVel = 0;
         } else {
