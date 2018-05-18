@@ -34,8 +34,12 @@ public class GameOverActivity extends Activity {
             }
         });
 
-        TextView text = (TextView) findViewById(R.id.scoreText);
-        text.setText(""+getIntent().getIntExtra("SCORE", -1));
-
+        TextView scoreText = (TextView) findViewById(R.id.scoreText);
+        scoreText.setText("Score: " + Integer.toString(Scoring.getCurrentScore()));
+        TextView highscoreText = (TextView) findViewById(R.id.highscoreText);
+        if (Scoring.getCurrentScore() > Scoring.getHighScore())
+            highscoreText.setText("New High Score: " + Integer.toString(Scoring.getHighScore()) + "!");
+        else
+            highscoreText.setText("High Score: " + Integer.toString(Scoring.getHighScore()));
     }
 }
