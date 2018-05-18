@@ -18,7 +18,6 @@ public class ObstacleGenerator {
 
     private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
     private static final int OBSTACLE_WIDTH = GlobalGameVariables.windowWidth / 3;
-    private static int lastObstacleX = 0;
     private static Context context = null;
     private static AttributeSet attrs = null;
 
@@ -34,7 +33,7 @@ public class ObstacleGenerator {
     {
         context = GameView_context;
         attrs = GameView_attrs;
-        GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 4;
+        GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 3;
 
         // Load the obstacle images
         obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
@@ -68,7 +67,6 @@ public class ObstacleGenerator {
             GameView.gameObjects.add(tmpOb);
             xPos += OBSTACLE_SPACING;
         }
-        lastObstacleX = xPos;
     }
 
     /**
@@ -79,7 +77,7 @@ public class ObstacleGenerator {
     public static void ResetObstacle(Obstacle obstacle)
     {
         Random rand = new Random();
-        int xPos = lastObstacleX;
+        int xPos = (int) ((21.0/5.0 - 83.0/30.0) * GlobalGameVariables.windowWidth + OBSTACLE_SPACING);
 
         Bounds[] bounds = new Bounds[3];
 
