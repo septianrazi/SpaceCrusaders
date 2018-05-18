@@ -18,8 +18,8 @@ public class ObstacleGenerator {
 
     private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
     private static final int OBSTACLE_WIDTH = GlobalGameVariables.windowWidth / 3;
-    private static Context context;
-    private static AttributeSet attrs;
+    private static Context context = null;
+    private static AttributeSet attrs = null;
 
     public static Bitmap[] obstacleImages = new Bitmap[2];
 
