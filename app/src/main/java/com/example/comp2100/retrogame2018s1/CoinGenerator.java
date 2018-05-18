@@ -36,8 +36,11 @@ public class CoinGenerator {
         attrs = game_attrs;
 
         //Load the image for the coins
-        coinImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.coin);
-        coinImage.prepareToDraw();
+        if (context != null)
+        {
+            coinImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.coin);
+            coinImage.prepareToDraw();
+        }
 
         // Generate the initial coins
         int coinCount = 3;
