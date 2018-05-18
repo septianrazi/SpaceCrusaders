@@ -54,7 +54,7 @@ public class ObstacleGenerator {
             bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
 
             // Bounds 1 = Top part of the obstacle
-            int boundsHeight12 = boundsHeight0 * 2;
+            int boundsHeight12 = (int) (boundsHeight0 * 2.2);
             yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
             bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
 
@@ -87,7 +87,7 @@ public class ObstacleGenerator {
         bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
 
         // Bounds 1 = Top part of the obstacle
-        int boundsHeight12 = boundsHeight0 * 2;
+        int boundsHeight12 = (int) (boundsHeight0 * 2.2);
         yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
         bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
 
