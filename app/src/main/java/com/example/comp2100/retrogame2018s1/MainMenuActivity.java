@@ -38,7 +38,6 @@ public class MainMenuActivity extends AppCompatActivity{
 
         // Setting the scrolling background parameters
         final ScrollingImageView scrolling_background = findViewById(R.id.scrolling_background);
-        scrolling_background.setSpeed(0);
         scrolling_background.setScaleX(1);
         scrolling_background.setScaleY(1);
 
@@ -52,6 +51,7 @@ public class MainMenuActivity extends AppCompatActivity{
 
         // Initialise background music
         MusicManager.getInstance().initalizeMediaPlayer(this, R.raw.ring);
+        //play the music
         MusicManager.getInstance().start();
 
         // Implement the buttons
