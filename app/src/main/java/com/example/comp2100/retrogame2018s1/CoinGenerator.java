@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public class CoinGenerator {
 
-    private static final int COIN_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
+    private static final int COIN_SPACING = GlobalGameVariables.windowWidth;
     private static final int COIN_WIDTH = GlobalGameVariables.windowWidth / 12;
     private static final int COIN_HEIGHT = COIN_WIDTH;
     private static Context context = null;

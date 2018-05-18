@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class ObstacleGenerator {
 
-    private static final int OBSTACLE_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
+    private static final int OBSTACLE_SPACING = GlobalGameVariables.windowWidth;
     private static final int OBSTACLE_WIDTH = GlobalGameVariables.windowWidth / 3;
     private static Context context = null;
     private static AttributeSet attrs = null;
@@ -77,7 +77,7 @@ public class ObstacleGenerator {
     public static void ResetObstacle(Obstacle obstacle)
     {
         Random rand = new Random();
-        int xPos = (int) ((21.0/5.0 - 83.0/30.0) * GlobalGameVariables.windowWidth + OBSTACLE_SPACING);
+        int xPos = (int) ((5.0 - 19.0/6.0) * GlobalGameVariables.windowWidth + OBSTACLE_SPACING);
 
         Bounds[] bounds = new Bounds[3];
 
