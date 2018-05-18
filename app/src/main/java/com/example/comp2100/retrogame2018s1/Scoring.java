@@ -56,11 +56,6 @@ public class Scoring {
     }
 
     /**
-     * This function adds the current score to the list of old scores
-     */
-    public void addCurrentScore() { scores.add(currentGameScore); }
-
-    /**
      * This function returns the high score
      * @return high score (int)
      */
@@ -74,6 +69,15 @@ public class Scoring {
         return highScore;
     }
 
+    /**
+     * This function adds the current score to the list of old scores
+     */
+    public static void addCurrentScore() { scores.add(currentGameScore); }
+
+    /**
+     * Returns the current score
+     * @return the current score
+     */
     public static int getCurrentScore() {return currentGameScore; }
 
 }
