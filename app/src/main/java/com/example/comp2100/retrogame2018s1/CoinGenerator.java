@@ -20,6 +20,7 @@ public class CoinGenerator {
     private static final int COIN_SPACING = 4 * GlobalGameVariables.windowWidth / 5;
     private static final int COIN_WIDTH = GlobalGameVariables.windowWidth / 12;
     private static final int COIN_HEIGHT = COIN_WIDTH;
+    private static int lastCoinX = 0;
     private static Context context = null;
     private static AttributeSet attrs = null;
 
@@ -54,6 +55,7 @@ public class CoinGenerator {
             GameView.gameObjects.add(tmpCoin);
             xPos += COIN_SPACING * 3;
         }
+        lastCoinX = xPos;
     }
 
     /**
@@ -63,7 +65,7 @@ public class CoinGenerator {
      */
     public static void resetCoin(Coin coin) {
         Random rand = new Random();
-        int xPos = GlobalGameVariables.windowWidth + COIN_SPACING;
+        int xPos = lastCoinX;
         int yPos = rand.nextInt(GlobalGameVariables.obstacleVariation) + (GlobalGameVariables.windowHeight / 2) - (GlobalGameVariables.obstacleVariation / 2);
         Bounds bounds = new Bounds(xPos + COIN_SPACING / 2, yPos, COIN_WIDTH, COIN_HEIGHT);
 
