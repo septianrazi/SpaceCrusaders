@@ -46,7 +46,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
         float spaceshipSize = GlobalGameVariables.windowWidth / 6;
         GlobalGameVariables.jumpSpeed = (float) ((Math.sqrt(2.0 * GlobalGameVariables.gravity *
-                (GlobalGameVariables.windowHeight *  (1.0/16.0)))));
+                (GlobalGameVariables.windowHeight *  GlobalGameVariables.jumpSpeedScaling))));
 
         spaceship = new SpaceShip(context, new Bounds(spaceshipX, spaceshipY,
                 spaceshipSize,spaceshipSize), attrs);
