@@ -11,7 +11,11 @@ public class SpaceShipTest {
 
     @Test
     public void collisionTest(){
-        Bounds spBounds = new Bounds(50,50,100,100);
+        // Set some values needed for the code to work
+        GlobalGameVariables.windowHeight = 1200;
+        GlobalGameVariables.windowWidth = 800;
+        GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 3;
+        Bounds spBounds = new Bounds(50, 50,100,100);
         SpaceShip sp = new SpaceShip(null, spBounds, null);
 
         Obstacle testObstacle;
@@ -20,6 +24,8 @@ public class SpaceShipTest {
         obstacleBounds[1] = new Bounds(50, 450, 100, 400);
         obstacleBounds[2] = new Bounds(50, -350, 100, 400);
         testObstacle = new Obstacle(null, null, 0, 0, obstacleBounds);
+
+        GameView.gameObjects.add(testObstacle);
 
         GlobalGameVariables.gameRunning = GameState.RUNNING;
         sp.update();
@@ -31,6 +37,8 @@ public class SpaceShipTest {
         obstacleBounds[1] = new Bounds(50, 50, 100, 400);
         obstacleBounds[2] = new Bounds(50, -350, 100, 400);
         testObstacle = new Obstacle(null, null, 0, 0, obstacleBounds);
+        GameView.gameObjects.clear();
+        GameView.gameObjects.add(testObstacle);
 
         sp.update();
 

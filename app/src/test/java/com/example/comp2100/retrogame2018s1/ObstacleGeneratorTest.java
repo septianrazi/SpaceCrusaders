@@ -34,6 +34,7 @@ public class ObstacleGeneratorTest {
         // Set some values needed for the code to work
         GlobalGameVariables.windowHeight = 1200;
         GlobalGameVariables.windowWidth = 800;
+        GameView.gameObjects.clear();
 
         // Generate a test obstacle
         Obstacle testObstacle;

@@ -15,6 +15,7 @@ public class CoinGeneratorTest {
         // Set some values needed for the code to work
         GlobalGameVariables.windowHeight = 1200;
         GlobalGameVariables.windowWidth = 800;
+        GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 3;
 
         // Generate the coins
         CoinGenerator.newGame(null, null);
@@ -33,6 +34,7 @@ public class CoinGeneratorTest {
         // Set some values needed for the code to work
         GlobalGameVariables.windowHeight = 1200;
         GlobalGameVariables.windowWidth = 800;
+        GameView.gameObjects.clear();
 
         // Make a coin to test
         Coin testCoin;
