@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
+
 /**
  * Created by Septian Razi on 19-Apr-18.
  * Some edits by Jasper McNiven 25th onwards
@@ -59,6 +61,8 @@ public class SpaceShip extends GameObject {
         yVel += GlobalGameVariables.gravity;
 
         if (bounds.GetY() >= yMax) {
+            if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(this.getContext(), R.raw.die);
+                SoundEffectsManager.getInstance().start();}
             GlobalGameVariables.gameRunning = GameState.OVER;
             yVel = 0;
         } else {

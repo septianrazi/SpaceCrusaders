@@ -19,6 +19,12 @@ public abstract class GameObject extends View
     Bounds bounds;
     float xVel, yVel = 0;
 
+    /**
+     *
+     * @param context
+     * @param attrs
+     * @param bounds
+     */
     public GameObject(Context context, @Nullable AttributeSet attrs, Bounds bounds) {
         super(context, attrs);
         this.bounds = bounds;

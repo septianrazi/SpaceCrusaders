@@ -23,8 +23,8 @@ public class Obstacle extends GameObject {
 
     /**
      *
-     * @param context
-     * @param attrs
+     * @param context the context within which this obstacle lie
+     * @param attrs the attributes of the activity and context
      * @param top_image The image for the top part of the obstacle
      * @param bottom_image The image for the bottom part of the obstacle
      * @param allBounds An array with the bounds of the empty space/ gap at index 0, then index 1 = top part
@@ -55,6 +55,10 @@ public class Obstacle extends GameObject {
     }
 
     @Override
+    /**
+     * Draws the obstacle in the appropriate location
+     * @param canvas bthe object with which to draw the obstacle
+     */
     protected void OnDraw(Canvas canvas) {
         // Draw the top part of the obstacle
         int left = (int) (allBounds[1].GetX() - allBounds[1].getWidth()/2);
@@ -62,7 +66,6 @@ public class Obstacle extends GameObject {
         int top = (int) (allBounds[1].GetY() - allBounds[1].getHeight()/2);
         int bottom = (int) (allBounds[1].GetY() + allBounds[1].getHeight()/2);
         Rect rect = new Rect(left, top, right, bottom);
-        //canvas.drawRect(left, top, right, bottom, p);
         canvas.drawBitmap(ObstacleGenerator.obstacleImages[top_image], null, rect, null);
 
         // Draw the bottom part of the obstacle
@@ -71,7 +74,6 @@ public class Obstacle extends GameObject {
         top = (int) (allBounds[2].GetY() - allBounds[2].getHeight()/2);
         bottom = (int) (allBounds[2].GetY() + allBounds[2].getHeight()/2);
         rect = new Rect(left, top, right, bottom);
-        //canvas.drawRect(left, top, right, bottom, p);
         canvas.drawBitmap(ObstacleGenerator.obstacleImages[bottom_image], null, rect, null);
     }
 
