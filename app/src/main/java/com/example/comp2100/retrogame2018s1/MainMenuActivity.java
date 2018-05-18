@@ -26,6 +26,10 @@ import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
 public class MainMenuActivity extends AppCompatActivity{
     public static MediaPlayer ring;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
