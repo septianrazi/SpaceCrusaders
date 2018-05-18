@@ -129,7 +129,7 @@ public class SpaceShip extends GameObject {
                 }
                 else
                 {
-                    if (distanceY < ((o.bounds.getHeight() / 2) - radius))
+                    if (distanceY < ((o.bounds.getHeight() / 2) - radius * 9.0/10.0))
                         return false;
                     else
                         return true;
