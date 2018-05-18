@@ -34,7 +34,8 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
      */
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.setOnTouchListener(this);
+        if (context != null)
+            this.setOnTouchListener(this);
 
         // Set up the game loop
         timer = new Handler();

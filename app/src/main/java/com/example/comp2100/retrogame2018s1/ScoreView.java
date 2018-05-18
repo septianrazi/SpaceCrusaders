@@ -21,11 +21,14 @@ public class ScoreView extends GameObject {
     public ScoreView(Context context, @Nullable AttributeSet attrs, Bounds bounds)
     {
         super(context, attrs, bounds);
-        paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.ScoreFontSize));
-        paint.setTextAlign(Paint.Align.CENTER);
+        if (context != null)
+        {
+            paint = new Paint();
+            paint.setColor(Color.WHITE);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.ScoreFontSize));
+            paint.setTextAlign(Paint.Align.CENTER);
+        }
     }
 
     @Override

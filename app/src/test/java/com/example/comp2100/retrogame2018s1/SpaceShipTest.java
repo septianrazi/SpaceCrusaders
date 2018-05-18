@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class SpaceShipTest {
 
     @Test
-    public void collisionTest() {
+    public void collisionTest(){
         // Set some values needed for the code to work
         GlobalGameVariables.windowHeight = 1200;
         GlobalGameVariables.windowWidth = 800;

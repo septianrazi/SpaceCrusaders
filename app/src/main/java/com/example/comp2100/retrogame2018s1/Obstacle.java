@@ -17,7 +17,6 @@ import android.util.AttributeSet;
 
 public class Obstacle extends GameObject {
 
-    private Paint p;
     private Bounds[] allBounds;
     private int top_image, bottom_image;
 
@@ -35,9 +34,7 @@ public class Obstacle extends GameObject {
         this.top_image = top_image;
         this.bottom_image = bottom_image;
         this.allBounds = allBounds;
-        this.p = new Paint();
-        p.setColor(Color.MAGENTA);
-        p.setStrokeWidth(3);
+
     }
 
     @Override
@@ -57,7 +54,7 @@ public class Obstacle extends GameObject {
     @Override
     /**
      * Draws the obstacle in the appropriate location
-     * @param canvas bthe object with which to draw the obstacle
+     * @param canvas the object with which to draw the obstacle
      */
     protected void OnDraw(Canvas canvas) {
         // Draw the top part of the obstacle
