@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         scrolling_image_view:speed="1dp"
-        scrolling_image_view:src="@drawable/game_back_new_test" />
+        scrolling_image_view:src="@drawable/game_back" />
 
     <com.example.comp2100.retrogame2018s1.GameView
         android:layout_width="wrap_content"

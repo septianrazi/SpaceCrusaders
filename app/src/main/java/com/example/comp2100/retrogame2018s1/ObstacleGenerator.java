@@ -36,8 +36,8 @@ public class ObstacleGenerator {
         GlobalGameVariables.obstacleVariation = GlobalGameVariables.windowHeight / 3;
 
         // Load the obstacle images
-        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
-        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_obstacle);
+        obstacleImages[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
+        obstacleImages[1] = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
         obstacleImages[0].prepareToDraw();
         obstacleImages[1].prepareToDraw();
 
@@ -54,7 +54,7 @@ public class ObstacleGenerator {
             bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
 
             // Bounds 1 = Top part of the obstacle
-            int boundsHeight12 = boundsHeight0 * 2;
+            int boundsHeight12 = (int) (boundsHeight0 * 2.2);
             yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
             bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
 
@@ -87,7 +87,7 @@ public class ObstacleGenerator {
         bounds[0] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight0);
 
         // Bounds 1 = Top part of the obstacle
-        int boundsHeight12 = boundsHeight0 * 2;
+        int boundsHeight12 = (int) (boundsHeight0 * 2.2);
         yPos = yPos - (boundsHeight0 / 2) - (boundsHeight12 / 2);
         bounds[1] = new Bounds(xPos, yPos, OBSTACLE_WIDTH, boundsHeight12);
 

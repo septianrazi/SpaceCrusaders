@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Assignment_1.iml" filepath="$PROJECT_DIR$/Assignment_1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../../ytrip/StudioProjects/RetroGame2018s1/Assignment_1.iml" filepath="$PROJECT_DIR$/../../../../ytrip/StudioProjects/RetroGame2018s1/Assignment_1.iml" />
+      <module fileurl="file://C:\ytrip\StudioProjects\RetroGame2018s1\Assignment_1.iml" filepath="C:\ytrip\StudioProjects\RetroGame2018s1\Assignment_1.iml" />
+      <module fileurl="file://C:\Users\ytrip\StudioProjects\RetroGame2018s1\Assignment_1.iml" filepath="C:\Users\ytrip\StudioProjects\RetroGame2018s1\Assignment_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/RetroGame2018s1.iml" filepath="$PROJECT_DIR$/RetroGame2018s1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
