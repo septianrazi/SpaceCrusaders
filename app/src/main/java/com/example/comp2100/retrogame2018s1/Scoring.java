@@ -43,6 +43,8 @@ public class Scoring {
             GlobalGameVariables.jumpSpeed = GlobalGameVariables.jumpSpeed * 1.3f;
             GlobalGameVariables.gravity = GlobalGameVariables.gravity * 1.3f;
             GlobalGameVariables.obstacleVariation = (int) (GlobalGameVariables.obstacleVariation * 1.3f);
+            GlobalGameVariables.jumpSpeed = (float) ((Math.sqrt(2.0 * GlobalGameVariables.gravity *
+                    (GlobalGameVariables.windowHeight *  (1.0/16.0)))));
         }
     }
 
