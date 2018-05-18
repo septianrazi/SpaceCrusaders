@@ -6,16 +6,11 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Switch;
 
 import com.q42.android.scrollingimageview.ScrollingImageView;
-
-import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
-import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.soundOn;
 
 /*
     Created and edited by Kriti  Tripathi, 19/04/2018
@@ -27,7 +22,7 @@ public class MainMenuActivity extends AppCompatActivity{
     public static MediaPlayer ring;
 
     /**
-     *
+     * Code run on creation/ initialisation of this activity
      * @param savedInstanceState
      */
     @Override
