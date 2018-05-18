@@ -17,7 +17,7 @@ public abstract class GameObject extends View
 {
 
     Bounds bounds;
-    float xVel, yVel;
+    float xVel, yVel = 0;
 
     public GameObject(Context context, @Nullable AttributeSet attrs, Bounds bounds) {
         super(context, attrs);

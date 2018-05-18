@@ -24,6 +24,8 @@ import java.util.concurrent.Semaphore;
 
 public class GameActivity extends AppCompatActivity {
 
+    public static Button button_pause;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +34,7 @@ public class GameActivity extends AppCompatActivity {
 
         GlobalGameVariables.gameRunning = GameState.PRETOUCH;
 
-        final ImageView imageView_pause = findViewById(R.id.imageView_pause);
-
-        final Button button_pause = findViewById(R.id.btn_pauseGame);
+        button_pause = findViewById(R.id.btn_pauseGame);
         final Button button_help = findViewById(R.id.btn_help);
         final Button button_quit = findViewById(R.id.btn_quit);
 
@@ -43,13 +43,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (GlobalGameVariables.gameRunning == GameState.RUNNING) {
                     GlobalGameVariables.gameRunning = GameState.PAUSED;
-                    button_pause.setText("Resume Game");
-                    imageView_pause.setVisibility(View.VISIBLE);
-                }
-                else {
-                    GlobalGameVariables.gameRunning = GameState.RUNNING;
-                    button_pause.setText("Pause Game");
-                    imageView_pause.setVisibility(View.GONE);
+                    button_pause.setText("Tap to Resume");
                 }
             }
         });
@@ -57,17 +51,34 @@ public class GameActivity extends AppCompatActivity {
         button_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(GameActivity.this, HelpActivity.class));
+
+                GlobalGameVariables.gameRunning = GameState.PRETOUCH;
+                Intent intent = new Intent(GameActivity.this, HelpActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                finish();
+                startActivity(intent);
             }
         });
 
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.exit(0);
+                GlobalGameVariables.gameRunning = GameState.PRETOUCH;
+                Intent intent = new Intent(GameActivity.this, MainMenuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                finish();
+                startActivity(intent);
+
             }
         });
 
+    }
+
+    public void onStart() {
+        super.onStart();
+        GlobalGameVariables.gravity = 1.2f; // The speed at which objects falls
+        GlobalGameVariables.jumpSpeed = 16*GlobalGameVariables.gravity;
+        GlobalGameVariables.scrollSpeed = 7.0f; // The speed at which the screen scrolls
     }
 
 }

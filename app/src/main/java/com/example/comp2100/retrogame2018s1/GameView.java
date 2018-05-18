@@ -14,11 +14,15 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+
 import static com.example.comp2100.retrogame2018s1.GlobalGameVariables.effectsOn;
 
 public class GameView extends View implements View.OnTouchListener, Runnable {
 
     private final int REFRESH_TIME = 16; // In milliseconds, e.g. 16 ~= 60Hz (60 fps)
+
+
 
     SpaceShip spaceship;
     Handler timer;
@@ -37,11 +41,13 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Set up the game loop
         timer = new Handler();
 
+        gameObjects.clear();
+
         // Initialise the players spaceship
         float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
         float spaceshipY = GlobalGameVariables.windowHeight / 2;
         float spaceshipSize = GlobalGameVariables.windowWidth / 6;
-        GlobalGameVariables.jumpSpeed = (float) Math.sqrt(2.0 * GlobalGameVariables.gravity * (GlobalGameVariables.windowHeight * (2/5)));
+        //GlobalGameVariables.jumpSpeed = //(float) Math.sqrt(2.0 * GlobalGameVariables.gravity * (GlobalGameVariables.windowHeight * (2/5)));
         spaceship = new SpaceShip(context, new Bounds(spaceshipX, spaceshipY, spaceshipSize,spaceshipSize), attrs);
 
         // Initialise the obstacles
@@ -53,6 +59,7 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         // Initialise the score view
         float scoreViewX = GlobalGameVariables.windowWidth / 2;
         float scoreViewY = GlobalGameVariables.windowHeight / 6;
+        Scoring.resetCurrentScore();
         gameObjects.add(new ScoreView(context, attrs, new Bounds(scoreViewX, scoreViewY, 0, 0)));
     }
 
@@ -86,14 +93,20 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         }
 
         // Un-pause the game if its paused
-        if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
+        if (GlobalGameVariables.gameRunning == GameState.PAUSED) {
+            GameActivity.button_pause.setText("Pause Game");
+            GlobalGameVariables.gameRunning = GameState.RUNNING;
+            timer.postDelayed(this, 10);
+        }
+        else if (GlobalGameVariables.gameRunning != GameState.RUNNING) {
             GlobalGameVariables.gameRunning = GameState.RUNNING;
             timer.postDelayed(this,10);
         }
 
+        // Run normal on touch/tap code if the games not paused
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
-        { // Run normal on touch/tap code if the games not paused
-            spaceship.speed =  -GlobalGameVariables.jumpSpeed;
+        {
+            spaceship.yVel =  -GlobalGameVariables.jumpSpeed;
             this.invalidate();
             if (effectsOn) {SoundEffectsManager.getInstance().initalizeMediaPlayer(getContext(), R.raw.jump);
                 SoundEffectsManager.getInstance().start();}
@@ -119,8 +132,17 @@ public class GameView extends View implements View.OnTouchListener, Runnable {
         if (GlobalGameVariables.gameRunning == GameState.RUNNING)
             timer.postDelayed(this,REFRESH_TIME);
         if (GlobalGameVariables.gameRunning == GameState.OVER){
-            getContext().startActivity(new Intent(getContext(), GameOverActivity.class));
+            GlobalGameVariables.score = Scoring.getCurrentScore();
+            Intent iscore = new Intent(getContext(), GameOverActivity.class);
+            iscore.putExtra("SCORE", Scoring.getCurrentScore());
+            getContext().startActivity(iscore);
 
+        } else if (GlobalGameVariables.gameRunning == GameState.PRETOUCH){
+
+            // Initialise the players spaceship
+            float spaceshipX = 2 * GlobalGameVariables.windowWidth / 5;
+            float spaceshipY = GlobalGameVariables.windowHeight / 2;
+            spaceship.bounds.SetPosition(spaceshipX,spaceshipY);
         }
     }
 }
