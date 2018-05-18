@@ -164,8 +164,8 @@ public class OptionsActivity extends AppCompatActivity {
 
     //Setting the global variables to the changed seekbar values
     public void setGlobalVariables(){
-            scrollSpeed = current_speed;
-            gravity = current_gravity;
+            GlobalGameVariables.defaultScrollSpeed = current_speed;
+            GlobalGameVariables.gravity = current_gravity;
     }
 
     public void setText(){

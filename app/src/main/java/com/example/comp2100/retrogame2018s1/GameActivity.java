@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
         super.onStart();
         GlobalGameVariables.gravity = 1.2f; // The speed at which objects falls
         //GlobalGameVariables.jumpSpeed = 16*GlobalGameVariables.gravity;
-        GlobalGameVariables.scrollSpeed = 7.0f; // The speed at which the screen scrolls
+        GlobalGameVariables.scrollSpeed = GlobalGameVariables.defaultScrollSpeed;
     }
 
 }
